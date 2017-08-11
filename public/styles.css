@@ -1,0 +1,40 @@
+.app {
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.app-header {
+	background-color: #333;
+	padding: 10px;
+	color: white;
+}
+
+.game {
+	padding: 2em;
+}
+
+.board {
+	border: 1px solid #CCC;
+	display: table;
+	margin: auto;
+	padding: 1px;
+}
+
+.board-row {
+	display: table-row;
+}
+
+.cell {
+	width: 35px;
+	height: 35px;
+	margin: 1px;
+	background-color: #EEE;
+	display: table-cell;
+	border: 1px solid #fff;
+	border-collapse: collapse;
+	cursor: pointer;
+}
+
+.cell.cleared {
+	cursor: default;
+}
