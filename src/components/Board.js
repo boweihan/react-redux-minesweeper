@@ -18,7 +18,6 @@ class Board extends Component {
 	renderGrid() {
 		return repeat(null, this.props.numRows)
 			.map((_, i) => this.renderRow(i));
-
 	}
 
 	renderRow(row) {

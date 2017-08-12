@@ -3,7 +3,7 @@ import subMatrix from './subMatrix';
 import getSubBoard from './getSubBoard';
 import matrixSum from './matrixSum';
 import toMatrix from './toMatrix';
-import {PROXIMITY_IS_MINE, UNCLEARED_MINE} from './codes';
+import {PROXIMITY_IS_MINE, CELL_STATE_UNCLEARED_MINE} from './codes';
 
 export default function getProximityMatrix(board, numRows, numCols) {
 	const proximityCounts = matrix(PROXIMITY_IS_MINE, numRows, numCols);
@@ -11,7 +11,7 @@ export default function getProximityMatrix(board, numRows, numCols) {
 
 	for (let row = 0; row < numRows; row++) {
 		for (let col = 0; col < numCols; col++) {
-			if (boardMatrix[row][col] === UNCLEARED_MINE) {
+			if (boardMatrix[row][col] === CELL_STATE_UNCLEARED_MINE) {
 				// Skip cells that are mines - they can't have any proximity counts
 				continue;
 			}

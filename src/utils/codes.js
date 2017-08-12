@@ -1,9 +1,11 @@
-export const UNCLEARED_SAFE = 0;
-export const UNCLEARED_MINE = 1;
-export const FLAGGED_CORRECT = 2;
-export const FLAGGED_INCORRECT = 3;
-export const CLEARED = 4;
-export const HIT_MINE = 5;
+export const MINE_STATE_CLEAR = 0;
+export const MINE_STATE_MINE = 1;
+
+
+export const CELL_STATE_UNCLEARED_SAFE = -1;
+export const CELL_STATE_UNCLEARED_MINE = -2;
+export const CELL_STATE_FLAGGED = -3;
+export const CELL_STATE_HIT_MINE = -4;
 
 
 // proximity counts
