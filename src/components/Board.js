@@ -1,17 +1,22 @@
 import React, {Component} from 'react';
 import Cell from './Cell';
+import repeat from '../utils/repeat';
 
 class Board extends Component {
 	render() {
 		return (
-			<div className="board">
+			<div
+				className="board"
+				onClick={this.boardClicked.bind(this)}
+				onContextMenu={this.boardClicked.bind(this)}
+			>
 				{this.props.board ? this.renderGrid() : null}
 			</div>
 		);
 	}
 
 	renderGrid() {
-		return this.props.board
+		return repeat(null, this.props.numRows)
 			.map((_, i) => this.renderRow(i));
 
 	}
@@ -25,13 +30,32 @@ class Board extends Component {
 	}
 
 	renderCells(row) {
-		return this.props.board[row]
-			.map((_, i) => (
-				<Cell
-					key={'cell.' + row + '.' + i}
-					code={this.props.board[row][i]}
+		return repeat(null, this.props.numCols)
+			.map((_, i) => {
+				const cellId = row * this.props.numCols + i;
+				return <Cell
+					key={'cell.' + cellId}
+					cellId={cellId}
+					code={this.props.board[cellId]}
 				/>
-			));
+			});
+	}
+
+	boardClicked(evt) {
+		if (evt.target.className === 'cell') {
+			const id = +evt.target.getAttribute('data-cell');
+			const {button} = evt.nativeEvent;
+
+			if (button === 0) {
+				// button is 0 for left click
+				this.props.onCellClick(id, true);
+			}
+			else if (button === 2) {
+				// button is 2 for right click
+				evt.preventDefault();
+				this.props.onCellClick(id, false);
+			}
+		}
 	}
 }
 

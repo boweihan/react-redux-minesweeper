@@ -4,3 +4,7 @@ export const FLAGGED_CORRECT = 2;
 export const FLAGGED_INCORRECT = 3;
 export const CLEARED = 4;
 export const HIT_MINE = 5;
+
+
+// proximity counts
+export const PROXIMITY_IS_MINE = -1;
