@@ -25,16 +25,32 @@
 }
 
 .cell {
-	width: 35px;
-	height: 35px;
+	width: 36px;
+	height: 36px;
 	margin: 1px;
-	background-color: #EEE;
+	background-color: #9aa4cf;
 	display: table-cell;
-	border: 1px solid #fff;
-	border-collapse: collapse;
+	border: 0;
 	cursor: pointer;
+	vertical-align: middle;
+	box-shadow: inset rgba(255,255,255,0.5) 0 0 0 1px;
+	text-align: center;
 }
 
 .cell.cleared {
 	cursor: default;
 }
+
+.close-0 , .close-1 , .close-2 , .close-3 , .close-4 , .close-5 , .close-6 , .close-7 , .close-8 {
+	background-color: #E1E1E1;
+	font-size: 20px;
+	font-weight: 600;
+}
+.close-1 {color: rgb(0, 0, 255);}
+.close-2 {color: rgb(0, 120, 0);}
+.close-3 {color: rgb(255, 0, 0);}
+.close-4 {color: rgb(0, 0, 120);}
+.close-5 {color: rgb(120, 0, 0);}
+.close-6 {color: rgb(0, 150, 255);}
+.close-7 {color: rgb(255, 90, 0);}
+.close-8 {color: rgb(0, 0, 0);}

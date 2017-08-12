@@ -1,5 +1,4 @@
 import {CELL_REVEAL, FLAG_MINE, NEW_GAME, UNFLAG_MINE} from '../actions/board';
-import clearProximity from '../utils/clearProximity';
 import getProximityMatrix from '../utils/getProximityMatrix';
 import flatten from '../utils/flatten';
 import {
@@ -9,6 +8,7 @@ import {
 	MINE_STATE_CLEAR, MINE_STATE_MINE
 } from '../utils/codes';
 import generateMines from '../utils/generateMines';
+import openSpace from '../utils/openSpace';
 
 const INITIAL_BOARD_STATE = {
 	board: [],
@@ -33,7 +33,7 @@ export default function board (state = INITIAL_BOARD_STATE, action) {
 			const {numRows, numCols, numMines} = state;
 			const mines = generateMines(numRows, numCols, numMines);
 			const board = mines.map(m => m === MINE_STATE_CLEAR ? CELL_STATE_UNCLEARED_SAFE : CELL_STATE_UNCLEARED_MINE);
-			const proximity = flatten(getProximityMatrix(board, numRows, numCols));
+			const proximity = flatten(getProximityMatrix(mines, numRows, numCols));
 			return {
 				...state,
 				board,
@@ -50,10 +50,13 @@ export default function board (state = INITIAL_BOARD_STATE, action) {
 		case CELL_REVEAL:
 			return {
 				...state,
-				board: clearProximity(
+				board: openSpace(
 					[...state.board],
+					state.mines,
 					state.proximity,
-					action.payload.cellId
+					action.payload.cellId,
+					state.numRows,
+					state.numCols
 				)
 			};
 

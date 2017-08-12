@@ -6,6 +6,15 @@ export const CELL_STATE_UNCLEARED_SAFE = -1;
 export const CELL_STATE_UNCLEARED_MINE = -2;
 export const CELL_STATE_FLAGGED = -3;
 export const CELL_STATE_HIT_MINE = -4;
+export const CELL_STATE_0 = 0;
+export const CELL_STATE_1 = 1;
+export const CELL_STATE_2 = 2;
+export const CELL_STATE_3 = 3;
+export const CELL_STATE_4 = 4;
+export const CELL_STATE_5 = 5;
+export const CELL_STATE_6 = 6;
+export const CELL_STATE_7 = 7;
+export const CELL_STATE_8 = 8;
 
 
 // proximity counts
