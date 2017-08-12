@@ -5,14 +5,13 @@ class Board extends Component {
 	render() {
 		return (
 			<div className="board">
-				{this.renderGrid()}
+				{this.props.board ? this.renderGrid() : null}
 			</div>
 		);
 	}
 
 	renderGrid() {
-		return new Array(this.props.rows)
-			.fill(0)
+		return this.props.board
 			.map((_, i) => this.renderRow(i));
 
 	}
@@ -26,9 +25,13 @@ class Board extends Component {
 	}
 
 	renderCells(row) {
-		return new Array(this.props.columns)
-			.fill(0)
-			.map((_, i) => <Cell key={'cell.' + row + '.' + i}/>);
+		return this.props.board[row]
+			.map((_, i) => (
+				<Cell
+					key={'cell.' + row + '.' + i}
+					code={this.props.board[row][i]}
+				/>
+			));
 	}
 }
 

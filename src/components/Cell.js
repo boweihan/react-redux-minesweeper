@@ -3,7 +3,9 @@ import React, {Component} from 'react';
 class Cell extends Component {
 	render() {
 		return (
-			<div className="cell"></div>
+			<div className="cell">
+				{this.props.code}
+			</div>
 		);
 	}
 }
