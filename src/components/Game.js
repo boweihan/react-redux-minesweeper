@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Controls from './Controls';
 import Board from './Board';
-import {newGame} from '../actions/controls';
-import {cellReveal, markAsMine, hitMine} from '../actions/board';
+import {cellReveal, markAsMine, hitMine, newGame} from '../actions/board';
 import {UNCLEARED_MINE, UNCLEARED_SAFE} from '../utils/codes';
 
 class Game extends Component {
@@ -22,8 +21,7 @@ class Game extends Component {
 	}
 
 	componentWillMount() {
-		const {numRows, numCols, numMines} = this.props;
-		this.props.newGame(numRows, numCols, numMines);
+		this.props.newGame();
 	}
 
 	onCellClick(cellId, isLeftClick) {
@@ -47,8 +45,7 @@ class Game extends Component {
 
 
 const mapStateToProps = state => {
-	const {numRows, numCols, numMines} = state.controls;
-	const board = state.board.board;
+	const {numRows, numCols, numMines, board} = state.board;
 	return {numRows, numCols, numMines, board};
 };
 

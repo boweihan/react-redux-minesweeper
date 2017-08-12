@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {newGame} from '../actions/controls';
+import {newGame} from '../actions/board';
 
 class Controls extends Component {
 	render() {
