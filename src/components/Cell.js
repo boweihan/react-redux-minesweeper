@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {
 	CELL_STATE_0, CELL_STATE_1, CELL_STATE_2, CELL_STATE_3, CELL_STATE_4, CELL_STATE_5, CELL_STATE_6, CELL_STATE_7,
-	CELL_STATE_8, CELL_STATE_FLAGGED, CELL_STATE_HIT_MINE, CELL_STATE_UNCLEARED
+	CELL_STATE_8, CELL_STATE_FLAGGED, CELL_STATE_HIT_MINE, CELL_STATE_UNCLEARED, CELL_STATE_UNINITIALISED
 } from '../constants';
 
 class Cell extends Component {
@@ -70,6 +70,8 @@ class Cell extends Component {
 			classNames.push('uncleared');
 		} else if (this.props.code === CELL_STATE_FLAGGED) {
 			classNames.push('flagged');
+		} else if (this.props.code === CELL_STATE_UNINITIALISED) {
+			classNames.push('uninitialised');
 		}
 		return classNames.join(' ');
 	}

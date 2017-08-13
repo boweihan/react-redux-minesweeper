@@ -1,8 +1,11 @@
-import {CELL_REVEAL, FLAG_MINE, HIT_MINE, NEW_GAME, RESTART_GAME, UNFLAG_MINE} from '../actions/board';
+import {
+	CELL_REVEAL, FLAG_MINE, HIT_MINE, NEW_GAME, PAUSE_GAME, REPLAY_GAME, START_GAME, UNFLAG_MINE,
+	UPDATE_TIMER
+} from '../actions/board';
 import getProximityMatrix from '../utils/getProximityMatrix';
 import flatten from '../utils/flatten';
 import {
-	CELL_STATE_FLAGGED, CELL_STATE_HIT_MINE, CELL_STATE_UNCLEARED,
+	CELL_STATE_FLAGGED, CELL_STATE_HIT_MINE, CELL_STATE_UNCLEARED, CELL_STATE_UNINITIALISED,
 } from '../constants';
 import generateMines from '../utils/generateMines';
 import openSpace from '../utils/openSpace';
@@ -19,6 +22,7 @@ const INITIAL_BOARD_STATE = {
 	isFinished: false,
 	isStarted: false,
 	lastGameLost: false,
+	time: 0,
 	elapsedTime: 0,
 	minesRemaining: 0
 };
@@ -30,14 +34,10 @@ export default function board (state = INITIAL_BOARD_STATE, action) {
 
 		case NEW_GAME:
 			const {rows: numRows, cols: numCols, mines: numMines} = action.payload;
-			const mines = generateMines(numRows, numCols, numMines);
-			board = repeat(CELL_STATE_UNCLEARED, mines.length);
-			const proximity = flatten(getProximityMatrix(mines, numRows, numCols));
+			board = repeat(CELL_STATE_UNINITIALISED, numCols * numRows);
 			return {
 				...state,
 				board,
-				mines,
-				proximity,
 				numMines,
 				numRows,
 				numCols,
@@ -45,11 +45,24 @@ export default function board (state = INITIAL_BOARD_STATE, action) {
 				isFinished: false,
 				isStarted: false,
 				lastGameLost: false,
-				elapsedTime: 0,
 				minesRemaining: numMines
 			};
 
-		case RESTART_GAME:
+		case START_GAME:
+			const mines = generateMines(state.numRows, state.numCols, state.numMines);
+			board = repeat(CELL_STATE_UNCLEARED, mines.length);
+			const proximity = flatten(getProximityMatrix(mines, state.numRows, state.numCols));
+			return {
+				...state,
+				board,
+				mines,
+				proximity,
+				isStarted: true,
+				time: (new Date()).getTime(),
+				elapsedTime: 0
+			};
+
+		case REPLAY_GAME:
 			board = repeat(CELL_STATE_UNCLEARED, state.board.length);
 			return {
 				...state,
@@ -58,8 +71,24 @@ export default function board (state = INITIAL_BOARD_STATE, action) {
 				isFinished: false,
 				isStarted: false,
 				lastGameLost: false,
-				elapsedTime: 0,
-				minesRemaining: state.numMines
+				minesRemaining: state.numMines,
+				time: 0,
+				elapsedTime: 0
+			};
+
+		case PAUSE_GAME:
+			const isPaused = !state.isPaused;
+			const elapsedTime = isPaused ?
+				state.elapsedTime + (new Date()).getTime() - state.time :
+				state.elapsedTime;
+			const time = isPaused ?
+				state.time :
+				(new Date()).getTime();
+			return {
+				...state,
+				isPaused,
+				time,
+				elapsedTime
 			};
 
 		case CELL_REVEAL:
@@ -103,6 +132,13 @@ export default function board (state = INITIAL_BOARD_STATE, action) {
 				isFinished: true,
 				lastGameLost: true,
 				board
+			};
+
+		case UPDATE_TIMER:
+			return {
+				...state,
+				time: action.payload,
+				elapsedTime: state.elapsedTime + (action.payload - state.time)
 			};
 
 		default:

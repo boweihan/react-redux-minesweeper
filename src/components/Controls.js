@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {newGame, pauseGame, restartGame} from '../actions/board';
+import {newGame, pauseGame, replayGame} from '../actions/board';
 import {setColumns, setRows, setTotalMines} from '../actions/controls';
 
 class Controls extends Component {
@@ -37,7 +37,7 @@ class Controls extends Component {
 				<div className="controls row">
 					<button type="button" onClick={() => this.props.pauseGame()}>Pause Game</button>
 					<button type="button" onClick={this.newGame.bind(this)}>New Game</button>
-					<button type="button" onClick={this.restartGame.bind(this)}>Restart Game</button>
+					<button type="button" onClick={this.replayGame.bind(this)}>Replay Game</button>
 				</div>
 			</div>
 		);
@@ -47,8 +47,8 @@ class Controls extends Component {
 		this.props.newGame(this.props.controlRows, this.props.controlCols, this.props.controlMines);
 	}
 
-	restartGame() {
-		this.props.restartGame();
+	replayGame() {
+		this.props.replayGame();
 		// Reset controls to previous game values
 		this.props.setRows(this.props.actualRows);
 		this.props.setColumns(this.props.actualCols);
@@ -103,7 +103,7 @@ export default connect(
 	mapStateToProps,
 	{
 		newGame,
-		restartGame,
+		replayGame,
 		pauseGame,
 		setRows,
 		setColumns,

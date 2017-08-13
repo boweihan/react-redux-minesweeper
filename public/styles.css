@@ -35,11 +35,11 @@
 	text-align: center;
 }
 
-.cell.uncleared {
+.cell.uncleared, .cell.uninitialised {
 	background-color: #9aa4cf;
 }
 
-.cell.uncleared:hover {
+.cell.uncleared:hover, .cell.uninitialised:hover {
 	opacity: 0.9;
 }
 

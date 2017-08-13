@@ -2,11 +2,18 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Controls from './Controls';
 import Board from './Board';
-import {cellReveal, flagMine, hitMine, unflagMine} from '../actions/board';
-import {CELL_STATE_FLAGGED, CELL_STATE_UNCLEARED, MINE_STATE_MINE} from '../constants';
+import {cellClicked, updateTimer} from '../actions/board';
 import Scoreboard from './Scoreboard';
 
 class Game extends Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			timer: null
+		};
+	}
+
 	render() {
 		return (
 			<div className={this.getClassNames()}>
@@ -35,25 +42,46 @@ class Game extends Component {
 		if (this.props.isFinished || this.props.isPaused) {
 			return;
 		}
-		const cellCode = this.props.board[cellId];
+		this.props.cellClicked(cellId, isLeftClick);
+	}
 
-		if (isLeftClick) {
-			if (cellCode === CELL_STATE_UNCLEARED) {
-				const isMine = this.props.mines[cellId] === MINE_STATE_MINE;
-				if (isMine) {
-					this.props.hitMine(cellId);
-				} else {
-					this.props.cellReveal(cellId);
-				}
-			}
-		} else {
-			if (cellCode === CELL_STATE_FLAGGED) {
-				this.props.unflagMine(cellId);
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.isPaused !== this.props.isPaused) {
+			if (nextProps.isPaused) {
+				this.cancelTimer();
 			} else {
-				this.props.flagMine(cellId);
+				this.resumeTimer();
+			}
+		}
+		else if (nextProps.isFinished !== this.props.isFinished) {
+			if (nextProps.isFinished) {
+				this.cancelTimer();
+			}
+		}
+		else if (nextProps.isStarted !== this.props.isStarted) {
+			if (nextProps.isStarted) {
+				this.resumeTimer();
 			}
 		}
 	}
+
+	resumeTimer() {
+		this.setState({
+			timer: setInterval(() => {
+				this.props.updateTimer();
+			}, 1000)
+		});
+	}
+
+	cancelTimer() {
+		if (this.state.timer !== null) {
+			clearInterval(this.state.timer);
+			this.setState({
+				timer: null
+			});
+		}
+	}
+
 }
 
 
@@ -65,9 +93,7 @@ const mapStateToProps = state => {
 export default connect(
 	mapStateToProps,
 	{
-		cellReveal,
-		flagMine,
-		unflagMine,
-		hitMine
+		updateTimer,
+		cellClicked
 	}
 )(Game);

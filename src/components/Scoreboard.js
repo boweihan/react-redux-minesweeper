@@ -6,6 +6,7 @@ class Scoreboard extends Component {
 			<div className="scoreboard">
 				{this.getMessage()}
 				<p>Mines remaining: {this.props.minesRemaining}</p>
+				<p>Time elapsed: {this.getFormattedTime()}</p>
 			</div>
 		);
 	}
@@ -16,6 +17,16 @@ class Scoreboard extends Component {
 			message = this.props.lastGameLost ? 'Game Over!' : 'You Win!';
 		}
 		return <h3>{message}</h3>;
+	}
+
+	getFormattedTime() {
+		const elapsedTime = Math.round(this.props.elapsedTime / 1000);
+		const minutes = Math.floor(elapsedTime / 60);
+		let seconds = '' + elapsedTime % 60;
+		if (seconds.length === 1) {
+			seconds = `0${seconds}`;
+		}
+		return `${minutes}:${seconds}`
 	}
 }
 
