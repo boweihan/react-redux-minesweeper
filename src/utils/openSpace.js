@@ -1,4 +1,4 @@
-import {CELL_STATE_UNCLEARED_MINE, CELL_STATE_UNCLEARED_SAFE, PROXIMITY_IS_MINE} from './codes';
+import {CELL_STATE_UNCLEARED, PROXIMITY_IS_MINE} from '../constants';
 import getAdjacentCells from './getAdjacentCells';
 import mapProximityCountToCellState from './mapProximityCountToCellState';
 import repeat from './repeat';
@@ -32,7 +32,7 @@ export default function openSpace(board, mines, proximity, cellId, numRows, numC
 		const cellState = board[cellId];
 
 		// Skip cell if already cleared or flagged
-		if (!(cellState === CELL_STATE_UNCLEARED_SAFE || cellState === CELL_STATE_UNCLEARED_MINE)) {
+		if (cellState !== CELL_STATE_UNCLEARED) {
 			continue;
 		}
 

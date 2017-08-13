@@ -1,14 +1,12 @@
-import {CELL_REVEAL, FLAG_MINE, NEW_GAME, UNFLAG_MINE} from '../actions/board';
+import {CELL_REVEAL, FLAG_MINE, HIT_MINE, NEW_GAME, UNFLAG_MINE} from '../actions/board';
 import getProximityMatrix from '../utils/getProximityMatrix';
 import flatten from '../utils/flatten';
 import {
-	CELL_STATE_FLAGGED,
-	CELL_STATE_UNCLEARED_MINE,
-	CELL_STATE_UNCLEARED_SAFE,
-	MINE_STATE_CLEAR, MINE_STATE_MINE
-} from '../utils/codes';
+	CELL_STATE_FLAGGED, CELL_STATE_HIT_MINE, CELL_STATE_UNCLEARED,
+} from '../constants';
 import generateMines from '../utils/generateMines';
 import openSpace from '../utils/openSpace';
+import repeat from '../utils/repeat';
 
 const INITIAL_BOARD_STATE = {
 	board: [],
@@ -27,12 +25,13 @@ const INITIAL_BOARD_STATE = {
 
 
 export default function board (state = INITIAL_BOARD_STATE, action) {
+	let board, cellId;
 	switch (action.type) {
 
 		case NEW_GAME:
 			const {numRows, numCols, numMines} = state;
 			const mines = generateMines(numRows, numCols, numMines);
-			const board = mines.map(m => m === MINE_STATE_CLEAR ? CELL_STATE_UNCLEARED_SAFE : CELL_STATE_UNCLEARED_MINE);
+			board = repeat(CELL_STATE_UNCLEARED, mines.length);
 			const proximity = flatten(getProximityMatrix(mines, numRows, numCols));
 			return {
 				...state,
@@ -61,23 +60,33 @@ export default function board (state = INITIAL_BOARD_STATE, action) {
 			};
 
 		case FLAG_MINE:
-			const updatedBoard = [...state.board];
-			updatedBoard[action.payload.cellId] = CELL_STATE_FLAGGED;
+			board = [...state.board];
+			board[action.payload.cellId] = CELL_STATE_FLAGGED;
 			return {
 				...state,
-				board: updatedBoard,
+				board,
 				minesRemaining: state.minesRemaining - 1
 			};
 
 		case UNFLAG_MINE:
-			const updatedBoard2 = [...state.board];
-			const {cellId} = action.payload;
-			const isMine = state.mines[cellId] === MINE_STATE_MINE;
-			updatedBoard2[action.payload.cellId] = isMine ? CELL_STATE_UNCLEARED_MINE : CELL_STATE_UNCLEARED_SAFE;
+			board = [...state.board];
+			cellId = action.payload;
+			board[action.payload.cellId] = CELL_STATE_UNCLEARED;
 			return {
 				...state,
-				board: updatedBoard2,
+				board,
 				minesRemaining: state.minesRemaining + 1
+			};
+
+		case HIT_MINE:
+			board = [...state.board];
+			cellId = action.payload;
+			board[action.payload.cellId] = CELL_STATE_HIT_MINE;
+			return {
+				...state,
+				isFinished: true,
+				lastGameLost: true,
+				board
 			};
 
 		default:

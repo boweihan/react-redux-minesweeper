@@ -8,7 +8,7 @@ import {
 	CELL_STATE_6,
 	CELL_STATE_7,
 	CELL_STATE_8
-} from './codes';
+} from '../constants';
 
 export default function mapProximityCountToCellState(count) {
 	switch (count) {

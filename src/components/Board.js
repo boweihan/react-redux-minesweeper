@@ -41,7 +41,7 @@ class Board extends Component {
 	}
 
 	boardClicked(evt) {
-		if (evt.target.className === 'cell') {
+		if (evt.target.classList.contains('cell')) {
 			const id = +evt.target.getAttribute('data-cell');
 			const {button} = evt.nativeEvent;
 

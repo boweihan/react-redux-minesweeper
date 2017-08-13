@@ -1,5 +1,5 @@
-import {} from './codes';
-import {MINE_STATE_CLEAR, MINE_STATE_MINE} from './codes';
+import {} from '../constants';
+import {MINE_STATE_CLEAR, MINE_STATE_MINE} from '../constants';
 
 export default function generateMines(numRows, numCols, numMines) {
 

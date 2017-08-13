@@ -27,14 +27,20 @@
 .cell {
 	width: 36px;
 	height: 36px;
-	margin: 1px;
-	background-color: #9aa4cf;
 	display: table-cell;
 	border: 0;
 	cursor: pointer;
 	vertical-align: middle;
 	box-shadow: inset rgba(255,255,255,0.5) 0 0 0 1px;
 	text-align: center;
+}
+
+.cell.uncleared {
+	background-color: #9aa4cf;
+}
+
+.cell.uncleared:hover {
+	opacity: 0.9;
 }
 
 .cell.cleared {
@@ -54,3 +60,13 @@
 .close-6 {color: rgb(0, 150, 255);}
 .close-7 {color: rgb(255, 90, 0);}
 .close-8 {color: rgb(0, 0, 0);}
+
+.hit-mine {
+	background-color: #FF3232;
+	font-weight: bold;
+	color: black;
+}
+
+.cell .mine {
+	font-size: 25px;
+}

@@ -2,7 +2,7 @@ import matrix from './matrix';
 import subMatrix from './subMatrix';
 import getSubBoard from './getSubBoard';
 import toMatrix from './toMatrix';
-import {PROXIMITY_IS_MINE, MINE_STATE_MINE} from './codes';
+import {PROXIMITY_IS_MINE, MINE_STATE_MINE} from '../constants';
 import flatten from './flatten';
 
 export default function getProximityMatrix(mines, numRows, numCols) {

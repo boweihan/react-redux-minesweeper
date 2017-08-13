@@ -3,12 +3,12 @@ import {connect} from 'react-redux';
 import Controls from './Controls';
 import Board from './Board';
 import {cellReveal, flagMine, hitMine, newGame, unflagMine} from '../actions/board';
-import {CELL_STATE_FLAGGED, CELL_STATE_UNCLEARED_MINE, CELL_STATE_UNCLEARED_SAFE} from '../utils/codes';
+import {CELL_STATE_FLAGGED, CELL_STATE_UNCLEARED, MINE_STATE_MINE} from '../constants';
 
 class Game extends Component {
 	render() {
 		return (
-			<div className="game">
+			<div className={this.getClassNames()}>
 				<Controls/>
 				<Board
 					board={this.props.board}
@@ -20,32 +20,41 @@ class Game extends Component {
 		);
 	}
 
+	getClassNames() {
+		const classNames = ['game'];
+		if (this.props.isPaused) {
+			classNames.push('game-paused');
+		}
+		if (this.props.isFinished) {
+			classNames.push('game-finished');
+		}
+		return classNames.join(' ');
+	}
+
 	componentWillMount() {
 		this.props.newGame();
 	}
 
 	onCellClick(cellId, isLeftClick) {
+		if (this.props.isFinished || this.props.isPaused) {
+			return;
+		}
 		const cellCode = this.props.board[cellId];
 
 		if (isLeftClick) {
-			switch (cellCode) {
-				case CELL_STATE_UNCLEARED_SAFE:
-					this.props.cellReveal(cellId);
-					break;
-				case CELL_STATE_UNCLEARED_MINE:
+			if (cellCode === CELL_STATE_UNCLEARED) {
+				const isMine = this.props.mines[cellId] === MINE_STATE_MINE;
+				if (isMine) {
 					this.props.hitMine(cellId);
-					break;
-				default:
-					break;
+				} else {
+					this.props.cellReveal(cellId);
+				}
 			}
 		} else {
-			switch (cellCode) {
-				case CELL_STATE_FLAGGED:
-					this.props.unflagMine(cellId);
-					break;
-				default:
-					this.props.flagMine(cellId);
-					break;
+			if (cellCode === CELL_STATE_FLAGGED) {
+				this.props.unflagMine(cellId);
+			} else {
+				this.props.flagMine(cellId);
 			}
 		}
 	}
@@ -53,8 +62,7 @@ class Game extends Component {
 
 
 const mapStateToProps = state => {
-	const {numRows, numCols, numMines, board} = state.board;
-	return {numRows, numCols, numMines, board};
+	return {...state.board};
 };
 
 
