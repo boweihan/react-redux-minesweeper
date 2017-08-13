@@ -4,16 +4,16 @@ import Controls from './Controls';
 import Board from './Board';
 import {cellReveal, flagMine, hitMine, unflagMine} from '../actions/board';
 import {CELL_STATE_FLAGGED, CELL_STATE_UNCLEARED, MINE_STATE_MINE} from '../constants';
+import Scoreboard from './Scoreboard';
 
 class Game extends Component {
 	render() {
 		return (
 			<div className={this.getClassNames()}>
 				<Controls/>
+				<Scoreboard {...this.props} />
 				<Board
-					board={this.props.board}
-					numRows={this.props.numRows}
-					numCols={this.props.numCols}
+					{...this.props}
 					onCellClick={this.onCellClick.bind(this)}
 				/>
 			</div>

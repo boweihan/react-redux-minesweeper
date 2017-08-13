@@ -2,9 +2,9 @@
 import {SET_COLS, SET_ROWS, SET_TOTAL_MINES} from '../actions/controls';
 
 const INITIAL_CONTROLS_STATE = {
-	rows: 16,
-	columns: 16,
-	mines: 40
+	rows: 10,
+	columns: 10,
+	mines: 10
 };
 
 export default function controls(state = INITIAL_CONTROLS_STATE, action) {

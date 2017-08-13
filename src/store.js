@@ -1,4 +1,5 @@
-import {combineReducers, createStore} from 'redux';
+import {applyMiddleware, combineReducers, createStore} from 'redux';
+import thunk from 'redux-thunk';
 import boardReducer from './reducers/board';
 import controlsReducer from './reducers/controls';
 
@@ -7,4 +8,7 @@ const reducers = combineReducers({
 	controls: controlsReducer
 });
 
-export default createStore(reducers);
+export default createStore(
+	reducers,
+	applyMiddleware(thunk)
+);

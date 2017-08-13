@@ -8,6 +8,7 @@ class Controls extends Component {
 		return (
 			<div className="controls">
 				<div className="controls-row">
+
 					<label htmlFor="control-rows">Rows:</label>
 					<input
 						id="control-rows"
@@ -15,18 +16,23 @@ class Controls extends Component {
 						value={this.props.controlRows}
 						onChange={this.onRowsChange.bind(this)}
 					/>
+
+					<label htmlFor="control-columns">Columns:</label>
 					<input
 						id="control-columns"
 						type="text"
 						value={this.props.controlCols}
 						onChange={this.onColumnsChange.bind(this)}
 					/>
+
+					<label htmlFor="control-mines">Mines:</label>
 					<input
 						id="control-mines"
 						type="text"
 						value={this.props.controlMines}
 						onChange={this.onMinesChange.bind(this)}
 					/>
+
 				</div>
 				<div className="controls row">
 					<button type="button" onClick={() => this.props.pauseGame()}>Pause Game</button>

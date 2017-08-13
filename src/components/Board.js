@@ -41,7 +41,8 @@ class Board extends Component {
 	}
 
 	boardClicked(evt) {
-		if (evt.target.classList.contains('cell')) {
+		const {classList} = evt.target;
+		if (classList.contains('cell') && !classList.contains('cleared')) {
 			const id = +evt.target.getAttribute('data-cell');
 			const {button} = evt.nativeEvent;
 
@@ -54,6 +55,8 @@ class Board extends Component {
 				evt.preventDefault();
 				this.props.onCellClick(id, false);
 			}
+		} else {
+			evt.preventDefault();
 		}
 	}
 }

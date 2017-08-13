@@ -59,7 +59,7 @@ export default function board (state = INITIAL_BOARD_STATE, action) {
 				isStarted: false,
 				lastGameLost: false,
 				elapsedTime: 0,
-				minesRemaining: numMines
+				minesRemaining: state.numMines
 			};
 
 		case CELL_REVEAL:
@@ -69,7 +69,7 @@ export default function board (state = INITIAL_BOARD_STATE, action) {
 					[...state.board],
 					state.mines,
 					state.proximity,
-					action.payload.cellId,
+					action.payload,
 					state.numRows,
 					state.numCols
 				)
@@ -77,7 +77,7 @@ export default function board (state = INITIAL_BOARD_STATE, action) {
 
 		case FLAG_MINE:
 			board = [...state.board];
-			board[action.payload.cellId] = CELL_STATE_FLAGGED;
+			board[action.payload] = CELL_STATE_FLAGGED;
 			return {
 				...state,
 				board,
@@ -87,7 +87,7 @@ export default function board (state = INITIAL_BOARD_STATE, action) {
 		case UNFLAG_MINE:
 			board = [...state.board];
 			cellId = action.payload;
-			board[action.payload.cellId] = CELL_STATE_UNCLEARED;
+			board[action.payload] = CELL_STATE_UNCLEARED;
 			return {
 				...state,
 				board,
@@ -97,7 +97,7 @@ export default function board (state = INITIAL_BOARD_STATE, action) {
 		case HIT_MINE:
 			board = [...state.board];
 			cellId = action.payload;
-			board[action.payload.cellId] = CELL_STATE_HIT_MINE;
+			board[action.payload] = CELL_STATE_HIT_MINE;
 			return {
 				...state,
 				isFinished: true,
