@@ -12,6 +12,7 @@ import openSpace from '../utils/openSpace';
 import repeat from '../utils/repeat';
 
 const INITIAL_BOARD_STATE = {
+	gameId: 1,
 	board: [],
 	mines: [],
 	proximity: [],
@@ -37,6 +38,7 @@ export default function board (state = INITIAL_BOARD_STATE, action) {
 			board = repeat(CELL_STATE_UNINITIALISED, numCols * numRows);
 			return {
 				...state,
+				gameId: state.gameId + 1,
 				board,
 				numMines,
 				numRows,
@@ -45,10 +47,12 @@ export default function board (state = INITIAL_BOARD_STATE, action) {
 				isFinished: false,
 				isStarted: false,
 				lastGameLost: false,
-				minesRemaining: numMines
+				minesRemaining: numMines,
+				elapsedTime: 0
 			};
 
 		case START_GAME:
+			console.log('startGame')
 			const mines = generateMines(state.numRows, state.numCols, state.numMines);
 			board = repeat(CELL_STATE_UNCLEARED, mines.length);
 			const proximity = flatten(getProximityMatrix(mines, state.numRows, state.numCols));
@@ -58,21 +62,20 @@ export default function board (state = INITIAL_BOARD_STATE, action) {
 				mines,
 				proximity,
 				isStarted: true,
-				time: (new Date()).getTime(),
-				elapsedTime: 0
+				time: (new Date()).getTime()
 			};
 
 		case REPLAY_GAME:
 			board = repeat(CELL_STATE_UNCLEARED, state.board.length);
 			return {
 				...state,
+				gameId: state.gameId + 1,
 				board,
 				isPaused: false,
 				isFinished: false,
 				isStarted: false,
 				lastGameLost: false,
 				minesRemaining: state.numMines,
-				time: 0,
 				elapsedTime: 0
 			};
 

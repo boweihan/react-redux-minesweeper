@@ -1,4 +1,4 @@
-import {CELL_STATE_FLAGGED, CELL_STATE_UNCLEARED, CELL_STATE_UNINITIALISED, MINE_STATE_MINE} from '../constants';
+import {CELL_STATE_FLAGGED, CELL_STATE_UNCLEARED, MINE_STATE_MINE} from '../constants';
 
 export const CELL_REVEAL = 'CELL_REVEAL';
 export const FLAG_MINE= 'FLAG_MINE';
@@ -75,16 +75,16 @@ export const hitMine = cellId => ({
 export const cellClicked = (cellId, isLeftClick) => {
 	return (dispatch, getState) => {
 		let state = getState();
-		let cellCode = state.board.board[cellId];
 
-		if (cellCode === CELL_STATE_UNINITIALISED) {
+		if (!state.board.isStarted) {
 			dispatch({
 				type: START_GAME,
 				payload: cellId
 			});
 			state = getState();
-			cellCode = state.board.board[cellId]
 		}
+
+		const cellCode = state.board.board[cellId];
 
 		if (isLeftClick) {
 			if (cellCode === CELL_STATE_UNCLEARED) {

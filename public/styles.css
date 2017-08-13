@@ -13,6 +13,14 @@
 	padding: 2em;
 }
 
+.game.game-paused .board {
+	background-color: #EEE;
+}
+.game.game-paused .board .cell {
+	opacity: 0;
+	pointer-events: none;
+}
+
 .board {
 	border: 1px solid #CCC;
 	display: table;

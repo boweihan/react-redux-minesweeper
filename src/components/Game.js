@@ -46,20 +46,19 @@ class Game extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if (nextProps.isPaused !== this.props.isPaused) {
+		if (nextProps.gameId !== this.props.gameId) {
+			this.cancelTimer();
+		}
+		else if (nextProps.isStarted && !this.props.isStarted) {
+			this.resumeTimer();
+		}
+		else if (nextProps.isFinished && !this.props.isFinished) {
+			this.cancelTimer();
+		}
+		else if (nextProps.isPaused !== this.props.isPaused) {
 			if (nextProps.isPaused) {
 				this.cancelTimer();
 			} else {
-				this.resumeTimer();
-			}
-		}
-		else if (nextProps.isFinished !== this.props.isFinished) {
-			if (nextProps.isFinished) {
-				this.cancelTimer();
-			}
-		}
-		else if (nextProps.isStarted !== this.props.isStarted) {
-			if (nextProps.isStarted) {
 				this.resumeTimer();
 			}
 		}
