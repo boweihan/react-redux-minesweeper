@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Controls from './Controls';
 import Board from './Board';
-import {cellReveal, flagMine, hitMine, newGame, unflagMine} from '../actions/board';
+import {cellReveal, flagMine, hitMine, unflagMine} from '../actions/board';
 import {CELL_STATE_FLAGGED, CELL_STATE_UNCLEARED, MINE_STATE_MINE} from '../constants';
 
 class Game extends Component {
@@ -29,10 +29,6 @@ class Game extends Component {
 			classNames.push('game-finished');
 		}
 		return classNames.join(' ');
-	}
-
-	componentWillMount() {
-		this.props.newGame();
 	}
 
 	onCellClick(cellId, isLeftClick) {
@@ -69,7 +65,6 @@ const mapStateToProps = state => {
 export default connect(
 	mapStateToProps,
 	{
-		newGame,
 		cellReveal,
 		flagMine,
 		unflagMine,

@@ -1,4 +1,4 @@
-import {CELL_REVEAL, FLAG_MINE, HIT_MINE, NEW_GAME, UNFLAG_MINE} from '../actions/board';
+import {CELL_REVEAL, FLAG_MINE, HIT_MINE, NEW_GAME, RESTART_GAME, UNFLAG_MINE} from '../actions/board';
 import getProximityMatrix from '../utils/getProximityMatrix';
 import flatten from '../utils/flatten';
 import {
@@ -12,15 +12,15 @@ const INITIAL_BOARD_STATE = {
 	board: [],
 	mines: [],
 	proximity: [],
-	numRows: 16,
-	numCols: 16,
-	numMines: 40,
+	numRows: 0,
+	numCols: 0,
+	numMines: 0,
 	isPaused: false,
 	isFinished: false,
 	isStarted: false,
 	lastGameLost: false,
 	elapsedTime: 0,
-	minesRemaining: 40
+	minesRemaining: 0
 };
 
 
@@ -29,7 +29,7 @@ export default function board (state = INITIAL_BOARD_STATE, action) {
 	switch (action.type) {
 
 		case NEW_GAME:
-			const {numRows, numCols, numMines} = state;
+			const {rows: numRows, cols: numCols, mines: numMines} = action.payload;
 			const mines = generateMines(numRows, numCols, numMines);
 			board = repeat(CELL_STATE_UNCLEARED, mines.length);
 			const proximity = flatten(getProximityMatrix(mines, numRows, numCols));
@@ -38,6 +38,22 @@ export default function board (state = INITIAL_BOARD_STATE, action) {
 				board,
 				mines,
 				proximity,
+				numMines,
+				numRows,
+				numCols,
+				isPaused: false,
+				isFinished: false,
+				isStarted: false,
+				lastGameLost: false,
+				elapsedTime: 0,
+				minesRemaining: numMines
+			};
+
+		case RESTART_GAME:
+			board = repeat(CELL_STATE_UNCLEARED, state.board.length);
+			return {
+				...state,
+				board,
 				isPaused: false,
 				isFinished: false,
 				isStarted: false,
