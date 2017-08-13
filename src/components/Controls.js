@@ -35,7 +35,12 @@ class Controls extends Component {
 
 				</div>
 				<div className="controls row">
-					<button type="button" onClick={() => this.props.pauseGame()}>Pause Game</button>
+					<button
+						type="button"
+						disabled={!this.props.isStarted && !this.props.isFinished}
+						onClick={() => this.props.pauseGame()}>
+						{this.props.isPaused ? 'Resume Game' : 'Pause Game'}
+					</button>
 					<button type="button" onClick={this.newGame.bind(this)}>New Game</button>
 					<button type="button" onClick={this.replayGame.bind(this)}>Replay Game</button>
 				</div>
@@ -96,6 +101,9 @@ const mapStateToProps = state => ({
 	actualRows: state.board.numRows,
 	actualCols: state.board.numCols,
 	actualMines: state.board.numMines,
+	isPaused: state.board.isPaused,
+	isStarted: state.board.isStarted,
+	isFinished: state.board.isFinished
 });
 
 
