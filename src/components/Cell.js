@@ -17,8 +17,6 @@ class Cell extends Component {
 
 	getContent() {
 		switch (this.props.code) {
-			case CELL_STATE_FLAGGED:
-				return 'F';
 			case CELL_STATE_HIT_MINE:
 				return <span className="mine">&#10039;</span>;
 			case CELL_STATE_1:
@@ -38,6 +36,7 @@ class Cell extends Component {
 			case CELL_STATE_8:
 				return 8;
 			case CELL_STATE_UNCLEARED:
+			case CELL_STATE_FLAGGED:
 			case CELL_STATE_0:
 			default:
 				return '';
@@ -69,6 +68,8 @@ class Cell extends Component {
 			classNames.push('hit-mine');
 		} else if (this.props.code === CELL_STATE_UNCLEARED) {
 			classNames.push('uncleared');
+		} else if (this.props.code === CELL_STATE_FLAGGED) {
+			classNames.push('flagged');
 		}
 		return classNames.join(' ');
 	}

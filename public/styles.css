@@ -47,6 +47,10 @@
 	cursor: default;
 }
 
+.cell.flagged {
+	background: #9aa4cf url(images/flag.gif) 50% 50% / 50% no-repeat;
+}
+
 .close-0 , .close-1 , .close-2 , .close-3 , .close-4 , .close-5 , .close-6 , .close-7 , .close-8 {
 	background-color: #E1E1E1;
 	font-size: 20px;
