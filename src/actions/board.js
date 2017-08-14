@@ -1,4 +1,5 @@
 import {CELL_STATE_FLAGGED, CELL_STATE_UNCLEARED, MINE_STATE_MINE} from '../constants';
+import {setColumns, setRows, setTotalMines} from './controls';
 
 export const CELL_REVEAL = 'CELL_REVEAL';
 export const FLAG_MINE= 'FLAG_MINE';
@@ -14,7 +15,7 @@ export const GAME_WON = 'GAME_WON';
 export const UPDATE_TIMER = 'UPDATE_TIMER';
 
 
-export const cellReveal= cellId => {
+export const cellReveal = cellId => {
 	return (dispatch, getState) => {
 		dispatch({
 			type: CELL_REVEAL,
@@ -107,15 +108,29 @@ export const cellClicked = (cellId, isLeftClick) => {
 };
 
 
-export const newGame = (rows, cols, mines) => ({
-	type: NEW_GAME,
-	payload: {rows, cols, mines}
-});
+export const newGame = () => {
+	return (dispatch, getState) => {
+		const {controls} = getState();
+		const {rows, cols, mines} = controls;
+		dispatch({
+			type: NEW_GAME,
+			payload: {rows, cols, mines}
+		});
+	};
+};
 
 
-export const replayGame = () => ({
-	type: REPLAY_GAME
-});
+export const replayGame = () => {
+	return (dispatch, getState) => {
+		dispatch({
+			type: REPLAY_GAME
+		});
+		const {board} = getState();
+		dispatch(setRows(board.numRows));
+		dispatch(setColumns(board.numCols));
+		dispatch(setTotalMines(board.numMines));
+	};
+};
 
 
 export const pauseGame = () => ({

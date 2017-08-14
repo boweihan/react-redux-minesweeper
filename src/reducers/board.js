@@ -25,7 +25,8 @@ const INITIAL_BOARD_STATE = {
 	lastGameLost: false,
 	time: 0,
 	elapsedTime: 0,
-	minesRemaining: 0
+	minesRemaining: 0,
+	isReplay: false
 };
 
 
@@ -48,14 +49,21 @@ export default function board (state = INITIAL_BOARD_STATE, action) {
 				isStarted: false,
 				lastGameLost: false,
 				minesRemaining: numMines,
-				elapsedTime: 0
+				elapsedTime: 0,
+				isReplay: false
 			};
 
 		case START_GAME:
-			console.log('startGame')
-			const mines = generateMines(state.numRows, state.numCols, state.numMines);
-			board = repeat(CELL_STATE_UNCLEARED, mines.length);
-			const proximity = flatten(getProximityMatrix(mines, state.numRows, state.numCols));
+			let mines, proximity;
+			const size = state.numRows * state.numCols;
+			board = repeat(CELL_STATE_UNCLEARED, size);
+			if (state.isReplay) {
+				mines = state.mines;
+				proximity = state.proximity;
+			} else {
+				mines = generateMines(state.numRows, state.numCols, state.numMines);
+				proximity = flatten(getProximityMatrix(mines, state.numRows, state.numCols));
+			}
 			return {
 				...state,
 				board,
@@ -76,7 +84,8 @@ export default function board (state = INITIAL_BOARD_STATE, action) {
 				isStarted: false,
 				lastGameLost: false,
 				minesRemaining: state.numMines,
-				elapsedTime: 0
+				elapsedTime: 0,
+				isReplay: true
 			};
 
 		case PAUSE_GAME:

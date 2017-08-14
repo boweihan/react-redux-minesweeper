@@ -1,18 +1,33 @@
-
 import {SET_COLS, SET_ROWS, SET_TOTAL_MINES} from '../actions/controls';
+
+const calcMaxMines = (rows, cols) => Math.round(0.5 * rows * cols);
 
 const INITIAL_CONTROLS_STATE = {
 	rows: 10,
-	columns: 10,
-	mines: 10
+	cols: 10,
+	mines: 10,
+	minRows: 10,
+	minCols: 10,
+	minMines: 10,
+	maxRows: 32,
+	maxCols: 32,
+	maxMines: calcMaxMines(32, 32)
 };
 
 export default function controls(state = INITIAL_CONTROLS_STATE, action) {
 	switch (action.type) {
 		case SET_ROWS:
-			return {...state, rows: action.payload};
+			return {
+				...state,
+				rows: action.payload,
+				maxMines: calcMaxMines(action.payload, state.cols)
+			};
 		case SET_COLS:
-			return {...state, columns: action.payload};
+			return {
+				...state,
+				cols: action.payload,
+				maxMines: calcMaxMines(action.payload, state.cols)
+			};
 		case SET_TOTAL_MINES:
 			return {...state, mines: action.payload};
 		default:
