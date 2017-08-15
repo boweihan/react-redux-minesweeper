@@ -42,7 +42,7 @@ class Board extends Component {
 
 	boardClicked(evt) {
 		const {classList} = evt.target;
-		if (classList.contains('cell') && !classList.contains('cleared')) {
+		if (classList.contains('cell') && !classList.contains('cell-state-cleared')) {
 			const id = +evt.target.getAttribute('data-cell');
 			const {button} = evt.nativeEvent;
 

@@ -1,5 +1,5 @@
 import {
-	CELL_REVEAL, FLAG_MINE, HIT_MINE, NEW_GAME, PAUSE_GAME, REPLAY_GAME, START_GAME, UNFLAG_MINE,
+	CELL_REVEAL, FLAG_MINE, GAME_WON, HIT_MINE, NEW_GAME, PAUSE_GAME, REPLAY_GAME, START_GAME, UNFLAG_MINE,
 	UPDATE_TIMER
 } from '../../actions/board';
 import {newGameMapper} from './mappers/newGame';
@@ -11,6 +11,7 @@ import {flagMineMapper} from './mappers/flagMine';
 import {hitMineMapper} from './mappers/hitMine';
 import {cellRevealMapper} from './mappers/cellReveal';
 import {updateTimerMapper} from './mappers/updateTimer';
+import {gameWonMapper} from './mappers/gameWon';
 
 const INITIAL_BOARD_STATE = {
 	gameId: 1,
@@ -60,6 +61,9 @@ export default function board (state = INITIAL_BOARD_STATE, action) {
 
 		case UPDATE_TIMER:
 			return updateTimerMapper(state, action);
+
+		case GAME_WON:
+			return gameWonMapper(state, action);
 
 		default:
 			return state;

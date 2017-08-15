@@ -1,5 +1,7 @@
 import {CELL_STATE_FLAGGED, CELL_STATE_UNCLEARED, MINE_STATE_MINE} from '../constants';
 import {setColumns, setRows, setTotalMines} from './controls';
+import {checkGameWon} from '../utils/checkGameWon';
+
 
 export const CELL_REVEAL = 'CELL_REVEAL';
 export const FLAG_MINE= 'FLAG_MINE';
@@ -24,9 +26,9 @@ export const cellReveal = cellId => {
 
 		const {board} = getState();
 
-		// If number of remaining uncleared cells is equal to mines remaining, check if game won
+		// If number of remaining uncleared cells is equal to mines remaining, game is won
 		if (board.board.filter(code => code === CELL_STATE_UNCLEARED).length === board.minesRemaining) {
-			console.log('check game won')
+			dispatch(gameWon());
 		}
 	};
 };
@@ -34,34 +36,33 @@ export const cellReveal = cellId => {
 
 export const flagMine = cellId => {
 	return (dispatch, getState) => {
-
 		dispatch({
 			type: FLAG_MINE,
 			payload: cellId
 		});
 
 		const {board} = getState();
+		const {mines, minesRemaining, numMines} = board;
 
-		if (board.minesRemaining === 0) {
-			console.log('check game won')
+		if (minesRemaining === 0 && checkGameWon(mines, numMines, board.board)) {
+			dispatch(gameWon());
 		}
-
 	};
 };
 
 
 export const unflagMine = cellId => {
 	return (dispatch, getState) => {
-
 		dispatch({
 			type: UNFLAG_MINE,
 			payload: cellId
 		});
 
 		const {board} = getState();
+		const {mines, minesRemaining, numMines} = board;
 
-		if (board.minesRemaining === 0) {
-			console.log('check game won')
+		if (minesRemaining === 0 && checkGameWon(mines, numMines, board.board)) {
+			dispatch(gameWon());
 		}
 	};
 };

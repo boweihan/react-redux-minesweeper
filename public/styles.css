@@ -47,7 +47,7 @@
 	background-color: #9aa4cf;
 }
 
-.cell.cell-state-uncleared:hover {
+.game:not(.game-finished) .cell.cell-state-uncleared:hover {
 	opacity: 0.9;
 }
 
