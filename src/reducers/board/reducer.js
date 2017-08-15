@@ -1,0 +1,68 @@
+import {
+	CELL_REVEAL, FLAG_MINE, HIT_MINE, NEW_GAME, PAUSE_GAME, REPLAY_GAME, START_GAME, UNFLAG_MINE,
+	UPDATE_TIMER
+} from '../../actions/board';
+import {newGameMapper} from './mappers/newGame';
+import {startGameMapper} from './mappers/startGame';
+import {replayGameMapper} from './mappers/replayGame';
+import {pauseGameMapper} from './mappers/pauseGame';
+import {unflagMineMapper} from './mappers/unflagMine';
+import {flagMineMapper} from './mappers/flagMine';
+import {hitMineMapper} from './mappers/hitMine';
+import {cellRevealMapper} from './mappers/cellReveal';
+import {updateTimerMapper} from './mappers/updateTimer';
+
+const INITIAL_BOARD_STATE = {
+	gameId: 1,
+	board: [],
+	mines: [],
+	proximity: [],
+	numRows: 0,
+	numCols: 0,
+	numMines: 0,
+	isPaused: false,
+	isFinished: false,
+	isStarted: false,
+	lastGameLost: false,
+	time: 0,
+	elapsedTime: 0,
+	minesRemaining: 0,
+	isReplay: false
+};
+
+
+export default function board (state = INITIAL_BOARD_STATE, action) {
+	switch (action.type) {
+
+		case NEW_GAME:
+			return newGameMapper(state, action);
+
+		case START_GAME:
+			return startGameMapper(state, action);
+
+		case REPLAY_GAME:
+			return replayGameMapper(state, action);
+
+		case PAUSE_GAME:
+			return pauseGameMapper(state, action);
+
+		case CELL_REVEAL:
+			return cellRevealMapper(state, action);
+
+		case FLAG_MINE:
+			return flagMineMapper(state, action);
+
+		case UNFLAG_MINE:
+			return unflagMineMapper(state, action);
+
+		case HIT_MINE:
+			return hitMineMapper(state, action);
+
+		case UPDATE_TIMER:
+			return updateTimerMapper(state, action);
+
+		default:
+			return state;
+
+	}
+}

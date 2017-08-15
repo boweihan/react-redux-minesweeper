@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Cell from './Cell';
-import repeat from '../utils/repeat';
+import {repeat} from '../utils/repeat';
 
 class Board extends Component {
 	render() {

@@ -1,8 +1,8 @@
-import getSubBoard from './getSubBoard';
-import sequence from './sequence';
-import flatten from './flatten';
+import {getSubBoard} from './getSubBoard';
+import {sequence} from './sequence';
+import {flatten} from './flatten';
 
-export default function getAdjacentCells(cellId, numRows, numCols) {
+export function getAdjacentCells(cellId, numRows, numCols) {
 
 	const row = Math.floor(cellId / numCols);
 	const col = cellId % numCols;

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {
 	CELL_STATE_0, CELL_STATE_1, CELL_STATE_2, CELL_STATE_3, CELL_STATE_4, CELL_STATE_5, CELL_STATE_6, CELL_STATE_7,
-	CELL_STATE_8, CELL_STATE_FLAGGED, CELL_STATE_HIT_MINE, CELL_STATE_UNCLEARED, CELL_STATE_UNINITIALISED
+	CELL_STATE_8, CELL_STATE_FLAGGED, CELL_STATE_HIT_MINE, CELL_STATE_UNCLEARED
 } from '../constants';
 
 class Cell extends Component {
@@ -46,33 +46,47 @@ class Cell extends Component {
 	getClassNames() {
 		const classNames = ['cell'];
 
-		if (this.props.code === CELL_STATE_0) {
-			classNames.push('close-0', 'cleared');
-		} else if (this.props.code === CELL_STATE_1) {
-			classNames.push('close-1', 'cleared');
-		} else if (this.props.code === CELL_STATE_2) {
-			classNames.push('close-2', 'cleared');
-		} else if (this.props.code === CELL_STATE_3) {
-			classNames.push('close-3', 'cleared');
-		} else if (this.props.code === CELL_STATE_4) {
-			classNames.push('close-4', 'cleared');
-		} else if (this.props.code === CELL_STATE_5) {
-			classNames.push('close-5', 'cleared');
-		} else if (this.props.code === CELL_STATE_6) {
-			classNames.push('close-6', 'cleared');
-		} else if (this.props.code === CELL_STATE_7) {
-			classNames.push('close-7', 'cleared');
-		} else if (this.props.code === CELL_STATE_8) {
-			classNames.push('close-8', 'cleared');
-		} else if (this.props.code === CELL_STATE_HIT_MINE) {
-			classNames.push('hit-mine');
-		} else if (this.props.code === CELL_STATE_UNCLEARED) {
-			classNames.push('uncleared');
-		} else if (this.props.code === CELL_STATE_FLAGGED) {
-			classNames.push('flagged');
-		} else if (this.props.code === CELL_STATE_UNINITIALISED) {
-			classNames.push('uninitialised');
+		switch (this.props.code) {
+			case CELL_STATE_0:
+				classNames.push('cell-state-0', 'cleared');
+				break;
+			case CELL_STATE_1:
+				classNames.push('cell-state-1', 'cleared');
+				break;
+			case CELL_STATE_2:
+				classNames.push('cell-state-2', 'cleared');
+				break;
+			case CELL_STATE_3:
+				classNames.push('cell-state-3', 'cleared');
+				break;
+			case CELL_STATE_4:
+				classNames.push('cell-state-4', 'cleared');
+				break;
+			case CELL_STATE_5:
+				classNames.push('cell-state-5', 'cleared');
+				break;
+			case CELL_STATE_6:
+				classNames.push('cell-state-6', 'cleared');
+				break;
+			case CELL_STATE_7:
+				classNames.push('cell-state-7', 'cleared');
+				break;
+			case CELL_STATE_8:
+				classNames.push('cell-state-8', 'cleared');
+				break;
+			case CELL_STATE_HIT_MINE:
+				classNames.push('hit-mine');
+				break;
+			case CELL_STATE_UNCLEARED:
+				classNames.push('uncleared');
+				break;
+			case CELL_STATE_FLAGGED:
+				classNames.push('flagged');
+				break;
+			default:
+				break;
 		}
+
 		return classNames.join(' ');
 	}
 }

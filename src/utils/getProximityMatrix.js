@@ -1,11 +1,11 @@
-import matrix from './matrix';
-import subMatrix from './subMatrix';
-import getSubBoard from './getSubBoard';
-import toMatrix from './toMatrix';
+import {matrix} from './matrix';
+import {subMatrix} from './subMatrix';
+import {getSubBoard} from './getSubBoard';
+import {toMatrix} from './toMatrix';
 import {PROXIMITY_IS_MINE, MINE_STATE_MINE} from '../constants';
-import flatten from './flatten';
+import {flatten} from './flatten';
 
-export default function getProximityMatrix(mines, numRows, numCols) {
+export function getProximityMatrix(mines, numRows, numCols) {
 	const proximityCounts = matrix(PROXIMITY_IS_MINE, numRows, numCols);
 	const minesMatrix = toMatrix(mines, numCols);
 

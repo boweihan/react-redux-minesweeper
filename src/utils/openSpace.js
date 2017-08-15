@@ -1,9 +1,9 @@
 import {CELL_STATE_UNCLEARED, PROXIMITY_IS_MINE} from '../constants';
-import getAdjacentCells from './getAdjacentCells';
-import mapProximityCountToCellState from './mapProximityCountToCellState';
-import repeat from './repeat';
+import {getAdjacentCells} from './getAdjacentCells';
+import {mapProximityCountToCellState} from './mapProximityCountToCellState';
+import {repeat} from './repeat';
 
-export default function openSpace(board, mines, proximity, cellId, numRows, numCols) {
+export function openSpace(board, proximity, cellId, numRows, numCols) {
 
 	const CELL_UNCHECKED = 0;
 	const CELL_CHECKED = 1;

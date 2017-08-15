@@ -1,7 +1,6 @@
-import {} from '../constants';
 import {MINE_STATE_CLEAR, MINE_STATE_MINE} from '../constants';
 
-export default function generateMines(numRows, numCols, numMines) {
+export function generateMines(numRows, numCols, numMines) {
 
 	const numCells = numRows * numCols;
 	const mines = new Array(numCells)

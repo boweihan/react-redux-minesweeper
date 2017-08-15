@@ -10,7 +10,7 @@ import {
 	CELL_STATE_8
 } from '../constants';
 
-export default function mapProximityCountToCellState(count) {
+export function mapProximityCountToCellState(count) {
 	switch (count) {
 		case 0:
 			return CELL_STATE_0;

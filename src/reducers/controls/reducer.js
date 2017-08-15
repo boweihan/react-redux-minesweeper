@@ -1,4 +1,4 @@
-import {SET_COLS, SET_ROWS, SET_TOTAL_MINES} from '../actions/controls';
+import {SET_COLS, SET_ROWS, SET_TOTAL_MINES} from '../../actions/controls';
 
 const calcMaxMines = (rows, cols) => Math.round(0.5 * rows * cols);
 

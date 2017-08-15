@@ -1,3 +1,3 @@
-export default function flatten(matrix) {
+export function flatten(matrix) {
 	return matrix.reduce((flatArr, row) => flatArr.concat(row), []);
 }
