@@ -26,7 +26,7 @@ export default function controls(state = INITIAL_CONTROLS_STATE, action) {
 			return {
 				...state,
 				cols: action.payload,
-				maxMines: calcMaxMines(action.payload, state.cols)
+				maxMines: calcMaxMines(state.rows, action.payload)
 			};
 		case SET_TOTAL_MINES:
 			return {...state, mines: action.payload};

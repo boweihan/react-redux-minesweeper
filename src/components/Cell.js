@@ -48,40 +48,40 @@ class Cell extends Component {
 
 		switch (this.props.code) {
 			case CELL_STATE_0:
-				classNames.push('cell-state-0', 'cleared');
+				classNames.push('cell-state-0', 'cell-state-cleared');
 				break;
 			case CELL_STATE_1:
-				classNames.push('cell-state-1', 'cleared');
+				classNames.push('cell-state-1', 'cell-state-cleared');
 				break;
 			case CELL_STATE_2:
-				classNames.push('cell-state-2', 'cleared');
+				classNames.push('cell-state-2', 'cell-state-cleared');
 				break;
 			case CELL_STATE_3:
-				classNames.push('cell-state-3', 'cleared');
+				classNames.push('cell-state-3', 'cell-state-cleared');
 				break;
 			case CELL_STATE_4:
-				classNames.push('cell-state-4', 'cleared');
+				classNames.push('cell-state-4', 'cell-state-cleared');
 				break;
 			case CELL_STATE_5:
-				classNames.push('cell-state-5', 'cleared');
+				classNames.push('cell-state-5', 'cell-state-cleared');
 				break;
 			case CELL_STATE_6:
-				classNames.push('cell-state-6', 'cleared');
+				classNames.push('cell-state-6', 'cell-state-cleared');
 				break;
 			case CELL_STATE_7:
-				classNames.push('cell-state-7', 'cleared');
+				classNames.push('cell-state-7', 'cell-state-cleared');
 				break;
 			case CELL_STATE_8:
-				classNames.push('cell-state-8', 'cleared');
+				classNames.push('cell-state-8', 'cell-state-cleared');
 				break;
 			case CELL_STATE_HIT_MINE:
-				classNames.push('hit-mine');
+				classNames.push('cell-state-hit-mine');
 				break;
 			case CELL_STATE_UNCLEARED:
-				classNames.push('uncleared');
+				classNames.push('cell-state-uncleared');
 				break;
 			case CELL_STATE_FLAGGED:
-				classNames.push('flagged');
+				classNames.push('cell-state-flagged');
 				break;
 			default:
 				break;

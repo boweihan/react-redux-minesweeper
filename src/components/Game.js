@@ -4,7 +4,6 @@ import Controls from './Controls';
 import Board from './Board';
 import {cellClicked, newGame, pauseGame, replayGame, updateTimer} from '../actions/board';
 import Scoreboard from './Scoreboard';
-import Inputs from './Inputs';
 import {setColumns, setRows, setTotalMines} from '../actions/controls';
 
 class Game extends Component {
@@ -19,19 +18,17 @@ class Game extends Component {
 	render() {
 		return (
 			<div className={this.getClassNames()}>
-				<Inputs
-					{...this.props.controls}
-					onRowsChange={this.props.setRows}
-					onColumnsChange={this.props.setColumns}
-					onMinesChange={this.props.setTotalMines}
-				/>
 				<Controls
+					{...this.props.controls}
 					isStarted={this.props.board.isStarted}
 					isPaused={this.props.board.isPaused}
 					isFinished={this.props.board.isFinished}
 					onNewGame={this.props.newGame}
 					onReplayGame={this.props.replayGame}
 					onPauseGame={this.props.pauseGame}
+					onRowsChange={this.props.setRows}
+					onColumnsChange={this.props.setColumns}
+					onMinesChange={this.props.setTotalMines}
 				/>
 				<Scoreboard {...this.props.board} />
 				<Board
