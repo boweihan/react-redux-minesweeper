@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import Controls from './Controls';
 import Board from './Board';
 import {cellClicked, newGame, pauseGame, replayGame, updateTimer} from '../actions/board';
-import Scoreboard from './Scoreboard';
 import {setColumns, setRows, setTotalMines} from '../actions/controls';
 
 class Game extends Component {
@@ -30,7 +29,6 @@ class Game extends Component {
 					onColumnsChange={this.props.setColumns}
 					onMinesChange={this.props.setTotalMines}
 				/>
-				<Scoreboard {...this.props.board} />
 				<Board
 					{...this.props.board}
 					onCellClick={this.onCellClick.bind(this)}

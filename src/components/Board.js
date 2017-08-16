@@ -10,6 +10,20 @@ class Board extends Component {
 				onClick={this.boardClicked.bind(this)}
 				onContextMenu={this.boardClicked.bind(this)}
 			>
+				<div className="board-header">
+					<div className={'board-header-item mines-remaining' + (this.props.isFinished && !this.props.lastGameLost ? ' success' : '')}>
+						<span className="board-header-item-icon">
+							<i className="zmdi zmdi-star-outline"></i>
+						</span>
+						<span className="board-header-item-value">{this.props.minesRemaining}</span>
+					</div>
+					<div className="board-header-item time-elapsed">
+						<span className="board-header-item-icon">
+							<i className="zmdi zmdi-timer"></i>
+						</span>
+						<span className="board-header-item-value">{this.getFormattedTime()}</span>
+					</div>
+				</div>
 				{this.props.board ? this.renderGrid() : null}
 			</div>
 		);
@@ -58,6 +72,16 @@ class Board extends Component {
 		} else {
 			evt.preventDefault();
 		}
+	}
+
+	getFormattedTime() {
+		const elapsedTime = Math.round(this.props.elapsedTime / 1000);
+		const minutes = Math.floor(elapsedTime / 60);
+		let seconds = '' + elapsedTime % 60;
+		if (seconds.length === 1) {
+			seconds = `0${seconds}`;
+		}
+		return `${minutes}:${seconds}`
 	}
 }
 
