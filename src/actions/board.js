@@ -34,27 +34,10 @@ export const cellReveal = cellId => {
 };
 
 
-export const flagMine = cellId => {
+export const flagMine = (cellId, isFlagging) => {
 	return (dispatch, getState) => {
 		dispatch({
-			type: FLAG_MINE,
-			payload: cellId
-		});
-
-		const {board} = getState();
-		const {mines, minesRemaining, numMines} = board;
-
-		if (minesRemaining === 0 && checkGameWon(mines, numMines, board.board)) {
-			dispatch(gameWon());
-		}
-	};
-};
-
-
-export const unflagMine = cellId => {
-	return (dispatch, getState) => {
-		dispatch({
-			type: UNFLAG_MINE,
+			type: isFlagging ? FLAG_MINE : UNFLAG_MINE,
 			payload: cellId
 		});
 
@@ -99,9 +82,9 @@ export const cellClicked = (cellId, isLeftClick) => {
 			}
 		} else {
 			if (cellCode === CELL_STATE_FLAGGED) {
-				dispatch(unflagMine(cellId));
+				dispatch(flagMine(cellId, false));
 			} else {
-				dispatch(flagMine(cellId));
+				dispatch(flagMine(cellId, true));
 			}
 		}
 
