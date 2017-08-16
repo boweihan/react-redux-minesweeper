@@ -6,7 +6,7 @@ class Board extends Component {
 	render() {
 		return (
 			<div
-				className="board"
+				className={'board ' + (this.props.isFinished ? (this.props.lastGameLost ? 'board-lost' : 'board-won') : '')}
 				onClick={this.boardClicked.bind(this)}
 				onContextMenu={this.boardClicked.bind(this)}
 			>
