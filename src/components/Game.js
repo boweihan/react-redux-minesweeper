@@ -16,7 +16,7 @@ class Game extends Component {
 
 	render() {
 		return (
-			<div className={this.getClassNames()}>
+			<div className={'game' + (this.props.isPaused ? ' game-paused' : '') + (this.props.isFinished ? ' game-finished' : '')}>
 				<Controls
 					{...this.props.controls}
 					isStarted={this.props.board.isStarted}
@@ -37,22 +37,10 @@ class Game extends Component {
 		);
 	}
 
-	getClassNames() {
-		const classNames = ['game'];
-		if (this.props.board.isPaused) {
-			classNames.push('game-paused');
-		}
-		if (this.props.board.isFinished) {
-			classNames.push('game-finished');
-		}
-		return classNames.join(' ');
-	}
-
 	onCellClick(cellId, isLeftClick) {
-		if (this.props.board.isFinished || this.props.board.isPaused) {
-			return;
+		if (!(this.props.board.isFinished || this.props.board.isPaused)) {
+			this.props.cellClicked(cellId, isLeftClick);
 		}
-		this.props.cellClicked(cellId, isLeftClick);
 	}
 
 	componentWillReceiveProps(nextProps) {

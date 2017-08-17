@@ -11,7 +11,7 @@
 }
 
 .game {
-	padding: 2em;
+	padding: 1em;
 }
 
 .game.game-paused .board {
@@ -141,7 +141,7 @@
 }
 
 .control-row {
-	padding: 0.5em 0;
+	margin: 1em 0;
 }
 
 .control {
