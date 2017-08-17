@@ -1,6 +1,7 @@
 .app {
 	text-align: center;
 	font-family: Arial, Helvetica, sans-serif;
+	color: #333;
 }
 
 .app-header {
@@ -29,6 +30,7 @@
 }
 .board.board-lost {
 	border-color: #f34d4d;
+	animation: border-flash 0.25s linear 0s 3;
 }
 .board.board-won {
 	border-color: #65de54;
@@ -58,18 +60,18 @@
 
 .board-header-item.mines-remaining {
 	left: 0;
-	color: #fff;
-	background-color: #f34d4d;
+	color: white;
+	background: linear-gradient(to bottom, #f34d4d, #e01310);
 	padding-left: 1em;
 	justify-content: flex-start;
 }
 .board-header-item.mines-remaining.success {
-	background-color: #65de54;
+	background: linear-gradient(to bottom, #65de54, #38b027);
 }
 .board-header-item.time-elapsed {
 	right: 0;
 	color: #777;
-	background-color: #e1e1e1;
+	background: linear-gradient(to bottom, #eee, #ccc);
 	padding-right: 1em;
 	justify-content: flex-end;
 }
@@ -85,12 +87,12 @@
 	border: 0;
 	cursor: pointer;
 	vertical-align: middle;
-	box-shadow: inset rgba(255,255,255,0.5) 0 0 0 1px;
+	box-shadow: inset rgba(255, 255, 255, 0.5) 0 0 0 1px;
 	text-align: center;
 }
 
 .cell.cell-state-uncleared {
-	background-color: #9aa4cf;
+	background: linear-gradient(to top left, #9aa4cf, #8791c0);
 }
 
 .game:not(.game-finished) .cell.cell-state-uncleared:hover {
@@ -148,14 +150,37 @@
 }
 
 .control input {
-	padding: 5px;
-	font-size: 1em;
+	padding: 10px;
+	border: 1px solid #ccc;
+	outline: none;
+	width: 3em;
 }
 
 .control label {
 	margin-right: 0.5em;
+	color: #777;
 }
 
 .control input:invalid {
-	border: 1px solid red;
+	border: 1px solid #e01310;
+}
+
+button {
+	border: 1px solid #ccc;
+	cursor: pointer;
+	background: linear-gradient(to bottom, #fff, #eee);
+	padding: 12px;
+	font-size: 0.9em;
+	outline: none;
+}
+button:hover, button:active {
+	background: #f7f7f7;
+	background: linear-gradient(to bottom, #fff, #e2e2e2);
+}
+
+
+@keyframes border-flash {
+	50% {
+		border-color: #e1e1e1;
+	}
 }
