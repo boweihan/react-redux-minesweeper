@@ -1,27 +1,35 @@
-import {matrix} from './matrix';
-import {subMatrix} from './subMatrix';
-import {getSubBoard} from './getSubBoard';
-import {toMatrix} from './toMatrix';
 import {PROXIMITY_IS_MINE, MINE_STATE_MINE} from '../constants';
-import {flatten} from './flatten';
 
-export function getProximityMatrix(mines, numRows, numCols) {
-	const proximityCounts = matrix(PROXIMITY_IS_MINE, numRows, numCols);
-	const minesMatrix = toMatrix(mines, numCols);
+export function getProximity(mines, numCols) {
+	const size = mines.length;
 
-	for (let row = 0; row < numRows; row++) {
-		for (let col = 0; col < numCols; col++) {
-			if (minesMatrix[row][col] === MINE_STATE_MINE) {
-				// Skip cells that are mines - they can't have any proximity counts
-				continue;
-			}
-			const {startRow, endRow, startCol, endCol} = getSubBoard(row, col, numRows, numCols, 1);
-			const surroundingCells = subMatrix(minesMatrix, startRow, endRow, startCol, endCol);
-			proximityCounts[row][col] = flatten(surroundingCells)
-				.filter(status => status === MINE_STATE_MINE)
-				.length;
+	// Map each cell to a proximity state
+	return mines.map((mineState, cellId) => {
+		if (mineState === MINE_STATE_MINE) {
+			return PROXIMITY_IS_MINE;
 		}
-	}
 
-	return proximityCounts;
+		// row number of current cell
+		const row = Math.floor(cellId / numCols);
+
+		// get cells to left and right, filter out any not in the same row
+		let adjacent = [cellId - 1, cellId, cellId + 1]
+			.filter(id => Math.floor(id / numCols) === row);
+
+		// add row above and below
+		adjacent = [
+			...adjacent.map(v => v - numCols),
+			...adjacent,
+			...adjacent.map(v => v + numCols)
+		];
+
+		// filter out out-of-range cells
+		// then map back to mines
+		// then count number mines
+		return adjacent
+			.filter(cellId => cellId >=0 && cellId < size)
+			.map(cellId => mines[cellId])
+			.filter(mineState => mineState === MINE_STATE_MINE)
+			.length;
+	});
 }

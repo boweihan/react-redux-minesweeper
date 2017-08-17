@@ -1,8 +1,7 @@
 import {repeat} from '../../../utils/repeat';
 import {CELL_STATE_UNCLEARED} from '../../../constants';
 import {generateMines} from '../../../utils/generateMines';
-import {flatten} from '../../../utils/flatten';
-import {getProximityMatrix} from '../../../utils/getProximityMatrix';
+import {getProximity} from '../../../utils/getProximityMatrix';
 
 export const startGameMapper = (state, action) => {
 	let mines, proximity;
@@ -13,7 +12,7 @@ export const startGameMapper = (state, action) => {
 		proximity = state.proximity;
 	} else {
 		mines = generateMines(state.numRows, state.numCols, state.numMines);
-		proximity = flatten(getProximityMatrix(mines, state.numRows, state.numCols));
+		proximity = getProximity(mines, state.numCols);
 	}
 	return {
 		...state,

@@ -15,6 +15,7 @@ class Board extends Component {
 					minesRemaining={this.props.minesRemaining}
 					isFinished={this.props.isFinished}
 					isPaused={this.props.isPaused}
+					lastGameLost={this.props.lastGameLost}
 					elapsedTime={this.props.elapsedTime}
 				/>
 				{this.renderGrid()}
