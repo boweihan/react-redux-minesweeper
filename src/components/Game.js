@@ -59,11 +59,11 @@ class Game extends Component {
 		if (nextProps.board.gameId !== this.props.board.gameId) {
 			this.cancelTimer();
 		}
-		else if (nextProps.board.isStarted && !this.props.board.isStarted) {
-			this.resumeTimer();
-		}
 		else if (nextProps.board.isFinished && !this.props.board.isFinished) {
 			this.cancelTimer();
+		}
+		else if (nextProps.board.isStarted && !this.props.board.isStarted) {
+			this.resumeTimer();
 		}
 		else if (nextProps.board.isPaused !== this.props.board.isPaused) {
 			if (nextProps.board.isPaused) {
