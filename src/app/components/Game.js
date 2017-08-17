@@ -16,7 +16,7 @@ class Game extends Component {
 
 	render() {
 		return (
-			<div className={'game' + (this.props.isPaused ? ' game-paused' : '') + (this.props.isFinished ? ' game-finished' : '')}>
+			<div className={'game' + (this.props.board.isPaused ? ' game-paused' : '') + (this.props.board.isFinished ? ' game-finished' : '')}>
 				<Controls
 					{...this.props.controls}
 					isStarted={this.props.board.isStarted}
