@@ -21,6 +21,7 @@ export const gameWonMapper = (state, action) => {
 	return {
 		...state,
 		board: boardFinal,
+		minesRemaining: 0,
 		isFinished: true,
 		lastGameLost: false
 	};
