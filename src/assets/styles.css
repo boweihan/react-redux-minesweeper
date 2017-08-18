@@ -17,6 +17,7 @@
 .game.game-paused .board {
 	background-color: #EEE;
 }
+
 .game.game-paused .board .cell {
 	opacity: 0;
 	pointer-events: none;
@@ -28,10 +29,12 @@
 	margin: 2em auto;
 	padding: 1px;
 }
+
 .board.board-lost {
 	border-color: #f34d4d;
 	animation: border-flash 0.25s linear 0s 3;
 }
+
 .board.board-won {
 	border-color: #65de54;
 }
@@ -39,6 +42,7 @@
 .board-row {
 	display: table-row;
 }
+
 .board-header {
 	display: table-caption;
 	position: relative;
@@ -65,9 +69,11 @@
 	padding-left: 1em;
 	justify-content: flex-start;
 }
+
 .board-header-item.mines-remaining.success {
 	background: linear-gradient(to bottom, #65de54, #38b027);
 }
+
 .board-header-item.time-elapsed {
 	right: 0;
 	color: #777;
@@ -75,6 +81,7 @@
 	padding-right: 1em;
 	justify-content: flex-end;
 }
+
 .board-header-item-icon {
 	margin-right: 0.5em;
 	font-weight: bold;
@@ -125,6 +132,7 @@
 	font-size: 20px;
 	font-weight: 600;
 }
+
 .cell.cell-state-1 {color: rgb(0, 0, 255);}
 .cell.cell-state-2 {color: rgb(0, 120, 0);}
 .cell.cell-state-3 {color: rgb(255, 0, 0);}
@@ -186,14 +194,17 @@ button {
 	font-size: 0.9em;
 	outline: none;
 }
+
 button:hover, button:active {
 	background: #f7f7f7;
 	background: linear-gradient(to bottom, #fff, #e2e2e2);
 }
 
-
 @keyframes border-flash {
-	50% {
+	25% {
+		border-color: #f34d4d;
+	}
+	75% {
 		border-color: #e1e1e1;
 	}
 }
