@@ -89,10 +89,10 @@
 }
 
 .cell {
-	min-width: 36px;
-	min-height: 36px;
-	width: 36px;
-	height: 36px;
+	min-width: 38px;
+	min-height: 38px;
+	width: 38px;
+	height: 38px;
 	display: table-cell;
 	border: 0;
 	cursor: pointer;
@@ -165,7 +165,7 @@
 }
 .cell.cell-state-reveal-mine-wrong i {
 	font-size: 24px;
-	line-height: 36px;
+	line-height: 38px;
 	font-weight: bold;
 }
 
