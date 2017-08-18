@@ -61,7 +61,7 @@ export function openSpace(board, proximity, cellId, numRows, numCols) {
 		const cellId = cellsWithProxCountZero[i];
 
 		// Get array of adjacent cell coords (includes central cell)
-		const adjCells = getAdjacentCells(cellId, numRows, numCols);
+		const adjCells = [cellId, ...getAdjacentCells(cellId, numRows, numCols)];
 
 		// Reveal them all
 		for (let j = 0, m = adjCells.length; j < m; j++) {
