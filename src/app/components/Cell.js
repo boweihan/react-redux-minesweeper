@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
-import {CELL_STATE_FLAGGED, CELL_STATE_HIT_MINE, CELL_STATE_UNCLEARED} from '../constants';
+import {
+	CELL_STATE_FLAGGED, CELL_STATE_HIT_MINE, CELL_STATE_REVEAL_MINE_FOUND, CELL_STATE_REVEAL_MINE_UNFOUND,
+	CELL_STATE_UNCLEARED
+} from '../constants';
 import {isCellCleared} from '../utils/isCellCleared';
 import {mapCellStateToProximityCount} from '../utils/mapCellStateToProximityCount';
 
@@ -23,6 +26,8 @@ class Cell extends Component {
 
 		switch (this.props.code) {
 			case CELL_STATE_HIT_MINE:
+			case CELL_STATE_REVEAL_MINE_FOUND:
+			case CELL_STATE_REVEAL_MINE_UNFOUND:
 				return <span className="mine">&#10039;</span>;
 			case CELL_STATE_UNCLEARED:
 			case CELL_STATE_FLAGGED:
@@ -47,6 +52,12 @@ class Cell extends Component {
 					break;
 				case CELL_STATE_FLAGGED:
 					classNames.push('cell-state-flagged');
+					break;
+				case CELL_STATE_REVEAL_MINE_FOUND:
+					classNames.push('cell-state-reveal-mine-found');
+					break;
+				case CELL_STATE_REVEAL_MINE_UNFOUND:
+					classNames.push('cell-state-reveal-mine-unfound');
 					break;
 				default:
 					break;

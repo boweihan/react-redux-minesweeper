@@ -5,15 +5,13 @@ class BoardHeader extends Component {
 		return (
 			<div className="board-header">
 				<div className={'board-header-item mines-remaining' + (this.props.isFinished && !this.props.lastGameLost ? ' success' : '')}>
-						<span className="board-header-item-icon">
-							<i className="zmdi zmdi-star-outline"></i>
-						</span>
+					<span className="board-header-item-icon">&#10039;</span>
 					<span className="board-header-item-value">{this.props.minesRemaining}</span>
 				</div>
 				<div className="board-header-item time-elapsed">
-						<span className="board-header-item-icon">
-							<i className="zmdi zmdi-timer"></i>
-						</span>
+					<span className="board-header-item-icon">
+						<i className="zmdi zmdi-timer"></i>
+					</span>
 					<span className="board-header-item-value">{this.getFormattedTime()}</span>
 				</div>
 			</div>

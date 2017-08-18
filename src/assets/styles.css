@@ -91,7 +91,8 @@
 	text-align: center;
 }
 
-.cell.cell-state-uncleared {
+.cell.cell-state-uncleared,
+.cell.cell-state-reveal-mine-unfound {
 	background: linear-gradient(to top left, #9aa4cf, #8791c0);
 }
 
@@ -105,6 +106,10 @@
 
 .cell.cell-state-flagged {
 	background: #9aa4cf url(images/flag.gif) 50% 50% / 50% no-repeat;
+}
+
+.cell.cell-state-0 {
+	opacity: 0.8;
 }
 
 .cell.cell-state-0,
@@ -131,9 +136,17 @@
 
 .cell.cell-state-hit-mine {
 	background-color: #e01310;
-	font-weight: bold;
-	position: relative;
 	color: #fff;
+}
+
+.cell.cell-state-hit-mine,
+.cell.cell-state-reveal-mine-found,
+.cell.cell-state-reveal-mine-unfound {
+	font-weight: bold;
+}
+
+.cell.cell-state-reveal-mine-found {
+	background-color: #65de54;
 }
 
 .cell .mine {
