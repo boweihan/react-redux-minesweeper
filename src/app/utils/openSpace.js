@@ -17,7 +17,7 @@ export function openSpace(board, proximity, cellId, numRows, numCols) {
 	const checkedCells = repeat(CELL_UNCHECKED, numRows * numCols);
 
 	// The initial cells to check are those adjacent to the clicked cell
-	let cellsToCheck = getAdjacentCells(cellId, numRows, numCols),
+	let cellsToCheck = [cellId, ...getAdjacentCells(cellId, numRows, numCols)],
 		cellsWithProxCountZero = [];
 
 	// First find the region of cells surrounding the clicked cell that have no mines nearby

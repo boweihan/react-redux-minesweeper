@@ -11,7 +11,7 @@ export const startGameMapper = (state, action) => {
 		mines = state.mines;
 		proximity = state.proximity;
 	} else {
-		mines = generateMines(state.numRows, state.numCols, state.numMines);
+		mines = generateMines(state.numRows, state.numCols, state.numMines, action.payload);
 		proximity = getProximity(mines, state.numRows, state.numCols);
 	}
 	return {
