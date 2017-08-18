@@ -1,4 +1,4 @@
-import {CELL_STATE_UNCLEARED, PROXIMITY_IS_MINE} from '../constants';
+import {CELL_STATE_FLAGGED, CELL_STATE_UNCLEARED, PROXIMITY_IS_MINE} from '../constants';
 import {getAdjacentCells} from './getAdjacentCells';
 import {mapProximityCountToCellState} from './mapProximityCountToCellState';
 import {repeat} from './repeat';
@@ -67,7 +67,8 @@ export function openSpace(board, proximity, cellId, numRows, numCols) {
 		for (let j = 0, m = adjCells.length; j < m; j++) {
 			const cellId = adjCells[j];
 			const count = proximity[cellId];
-			if (count !== PROXIMITY_IS_MINE) {
+			const currentState = board[cellId];
+			if (count !== PROXIMITY_IS_MINE && currentState !== CELL_STATE_FLAGGED) {
 				board[cellId] = mapProximityCountToCellState(proximity[cellId]);
 			}
 		}

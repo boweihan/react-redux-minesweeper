@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {
 	CELL_STATE_FLAGGED, CELL_STATE_HIT_MINE, CELL_STATE_REVEAL_MINE_FOUND, CELL_STATE_REVEAL_MINE_UNFOUND,
+	CELL_STATE_REVEAL_MINE_WRONG,
 	CELL_STATE_UNCLEARED
 } from '../constants';
 import {isCellCleared} from '../utils/isCellCleared';
@@ -29,6 +30,8 @@ class Cell extends Component {
 			case CELL_STATE_REVEAL_MINE_FOUND:
 			case CELL_STATE_REVEAL_MINE_UNFOUND:
 				return <span className="mine">&#10039;</span>;
+			case CELL_STATE_REVEAL_MINE_WRONG:
+				return <i className="zmdi zmdi-close"></i>;
 			case CELL_STATE_UNCLEARED:
 			case CELL_STATE_FLAGGED:
 			default:
@@ -58,6 +61,9 @@ class Cell extends Component {
 					break;
 				case CELL_STATE_REVEAL_MINE_UNFOUND:
 					classNames.push('cell-state-reveal-mine-unfound');
+					break;
+				case CELL_STATE_REVEAL_MINE_WRONG:
+					classNames.push('cell-state-reveal-mine-wrong');
 					break;
 				default:
 					break;

@@ -1,4 +1,5 @@
 .app {
+	min-width: 1000px;
 	text-align: center;
 	font-family: Arial, Helvetica, sans-serif;
 	color: #333;
@@ -7,7 +8,7 @@
 .app-header {
 	background-color: #333;
 	padding: 10px;
-	color: white;
+	color: #fff;
 }
 
 .game {
@@ -15,7 +16,7 @@
 }
 
 .game.game-paused .board {
-	background-color: #EEE;
+	background-color: #eee;
 }
 
 .game.game-paused .board .cell {
@@ -57,14 +58,14 @@
 	height: 100%;
 	display: flex;
 	align-items: center;
-	border: 1px solid #CCC;
+	border: 1px solid #ccc;
 	font-size: 2em;
 	box-sizing: border-box;
 }
 
 .board-header-item.mines-remaining {
 	left: 0;
-	color: white;
+	color: #fff;
 	background: linear-gradient(to bottom, #f34d4d, #e01310);
 	padding-left: 1em;
 	justify-content: flex-start;
@@ -88,6 +89,8 @@
 }
 
 .cell {
+	min-width: 36px;
+	min-height: 36px;
 	width: 36px;
 	height: 36px;
 	display: table-cell;
@@ -128,7 +131,7 @@
 .cell.cell-state-6,
 .cell.cell-state-7,
 .cell.cell-state-8 {
-	background-color: #E1E1E1;
+	background-color: #e1e1e1;
 	font-size: 20px;
 	font-weight: 600;
 }
@@ -155,6 +158,15 @@
 
 .cell.cell-state-reveal-mine-found {
 	background-color: #65de54;
+}
+.cell.cell-state-reveal-mine-wrong {
+	color: white;
+	background: #f0cf5c;
+}
+.cell.cell-state-reveal-mine-wrong i {
+	font-size: 24px;
+	line-height: 36px;
+	font-weight: bold;
 }
 
 .cell .mine {
@@ -197,7 +209,7 @@ button {
 
 button:hover, button:active {
 	background: #f7f7f7;
-	background: linear-gradient(to bottom, #fff, #e2e2e2);
+	background: linear-gradient(to bottom, #fff, #e1e1e1);
 }
 
 @keyframes border-flash {
