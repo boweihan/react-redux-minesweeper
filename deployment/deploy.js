@@ -1,5 +1,5 @@
 const ghpages = require('gh-pages');
 
-ghpages.publish('./', {
-	src: ['build/index.html', 'build/static/**/*']
+ghpages.publish('./build', {
+	src: ['index.html', 'static/**/*'],
 });
