@@ -50,7 +50,7 @@ class Controls extends Component {
 					<div className="control">
 						<button
 							type="button"
-							disabled={!this.props.isStarted && !this.props.isFinished}
+							disabled={!this.props.isStarted || this.props.isFinished}
 							onClick={() => this.props.onPauseGame()}>
 							{this.props.isPaused ? 'Resume Game' : 'Pause Game'}
 						</button>

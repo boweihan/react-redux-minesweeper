@@ -148,7 +148,9 @@ export const keyPressed = (ctrlKey, keyCode) => {
 			switch (keyCode) {
 				case 80:
 					// p key - pause
-					dispatch(pauseGame());
+					if (board.isStarted && !board.isFinished) {
+						dispatch(pauseGame());
+					}
 					break;
 				case 82:
 					// r key - replay
