@@ -23,10 +23,6 @@
 	background: linear-gradient(to top left, rgb(154, 164, 207), rgb(135, 145, 192));
 }
 
-.game:not(.game-finished) .cell.cell-state-uncleared:hover {
-	background: linear-gradient(to top left, rgba(154, 164, 207, 0.9), rgba(135, 145, 192, 0.9));
-}
-
 .cell.cell-state-cleared {
 	cursor: default;
 }
