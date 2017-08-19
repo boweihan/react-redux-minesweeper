@@ -9,3 +9,5 @@ This is a minesweeper game built for fun. Uses React.js and redux.
 ### DEMO
 
 https://davidbanksnz.github.io/react-redux-minesweeper/
+
+<img src="screenshot-win.png" width="500">
