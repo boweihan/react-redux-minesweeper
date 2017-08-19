@@ -1,0 +1,79 @@
+
+.game.game-paused .board {
+	background-color: #eee;
+}
+
+
+
+.board {
+	border: 4px solid #e1e1e1;
+	display: table;
+	margin: 2em auto;
+	padding: 1px;
+}
+
+.board.board-lost {
+	border-color: #f34d4d;
+	animation: border-flash 0.25s linear 0s 3;
+}
+
+.board.board-won {
+	border-color: #65de54;
+}
+
+.board-row {
+	display: table-row;
+}
+
+.board-header {
+	display: table-caption;
+	position: relative;
+	height: 3.5em;
+	margin-bottom: 5px;
+}
+
+.board-header-item {
+	position: absolute;
+	bottom: 0;
+	width: 50%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	border: 1px solid #ccc;
+	font-size: 2em;
+	box-sizing: border-box;
+}
+
+.board-header-item.mines-remaining {
+	left: 0;
+	color: #fff;
+	background: linear-gradient(to bottom, #f34d4d, #e01310);
+	padding-left: 1em;
+	justify-content: flex-start;
+}
+
+.board-header-item.mines-remaining.success {
+	background: linear-gradient(to bottom, #65de54, #38b027);
+}
+
+.board-header-item.time-elapsed {
+	right: 0;
+	color: #777;
+	background: linear-gradient(to bottom, #eee, #ccc);
+	padding-right: 1em;
+	justify-content: flex-end;
+}
+
+.board-header-item-icon {
+	margin-right: 0.5em;
+	font-weight: bold;
+}
+
+@keyframes border-flash {
+	25% {
+		border-color: #f34d4d;
+	}
+	75% {
+		border-color: #e1e1e1;
+	}
+}

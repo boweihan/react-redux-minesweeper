@@ -1,0 +1,42 @@
+.help-modal {
+	position: fixed;
+	padding: 1em 2em;
+	top: 100px;
+	left: 0;
+	right: 0;
+	width: 700px;
+	margin: 0 auto;
+	background: #fff;
+	border: 1px solid #ccc;
+	box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 6px 2px;
+	display: none;
+}
+
+.help-modal.help-modal-open {
+	display: block;
+}
+
+.help-modal table {
+	margin: 2em auto;
+	border-collapse: collapse;
+}
+
+.help-modal table td {
+	padding: 6px 12px;
+	border: 1px solid #ddd;
+	font-size: 0.9em;
+	text-align: left;
+}
+
+.help-modal table td:first-child {
+	font-weight: bold;
+}
+
+.help-modal .help-modal-close-icon {
+	position: absolute;
+	right: 1.5rem;
+	top: 01rem;
+	font-size: 2rem;
+	color: #f34d4d;
+	cursor: pointer;
+}

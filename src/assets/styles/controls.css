@@ -1,0 +1,39 @@
+.control-row {
+	margin: 1em 0;
+}
+
+.control {
+	padding: 0 1em;
+	display: inline-block;
+}
+
+.control input {
+	padding: 10px;
+	border: 1px solid #ccc;
+	outline: none;
+	width: 3em;
+}
+
+.control label {
+	margin-right: 0.5em;
+	color: #777;
+}
+
+.control input:invalid {
+	border: 1px solid #e01310;
+}
+
+button {
+	border: 1px solid #ccc;
+	cursor: pointer;
+	background: linear-gradient(to bottom, #fff, #eee);
+	padding: 12px;
+	font-size: 0.9em;
+	outline: none;
+	font-family: inherit;
+}
+
+button:hover, button:active {
+	background: #f7f7f7;
+	background: linear-gradient(to bottom, #fff, #e1e1e1);
+}
