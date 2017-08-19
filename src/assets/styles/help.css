@@ -1,6 +1,6 @@
 .help-modal {
 	position: fixed;
-	padding: 1em 2em;
+	padding: 1em 2em 2em 2em;
 	top: 100px;
 	left: 0;
 	right: 0;
@@ -19,10 +19,11 @@
 .help-modal table {
 	margin: 2em auto;
 	border-collapse: collapse;
+	min-width: 350px;
 }
 
 .help-modal table td {
-	padding: 6px 12px;
+	padding: 4px 12px;
 	border: 1px solid #ddd;
 	font-size: 0.9em;
 	text-align: left;
