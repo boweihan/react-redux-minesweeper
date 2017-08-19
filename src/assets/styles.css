@@ -1,8 +1,0 @@
-@import '../../node_modules/normalize.css/normalize.css';
-@import '../../node_modules/material-design-iconic-font/dist/css/material-design-iconic-font.min.css';
-
-@import 'styles/app.css';
-@import 'styles/board.css';
-@import 'styles/controls.css';
-@import 'styles/cell.css';
-@import 'styles/help.css';
