@@ -3,7 +3,9 @@ import {connect} from 'react-redux';
 import Controls from './Controls';
 import Board from './Board';
 import {cellClick, keyPressed, newGame, pauseGame, replayGame, updateTimer} from '../actions/board';
-import {setColumns, setRows, setTotalMines} from '../actions/controls';
+import {closeHelpModal, openHelpModal, setColumns, setRows, setTotalMines} from '../actions/controls';
+import HelpModalComponent from './HelpModal';
+import Header from './Header';
 
 class Game extends Component {
 
@@ -16,25 +18,43 @@ class Game extends Component {
 
 	render() {
 		return (
-			<div className={'game' + (this.props.board.isPaused ? ' game-paused' : '') + (this.props.board.isFinished ? ' game-finished' : '')}>
-				<Controls
-					{...this.props.controls}
-					isStarted={this.props.board.isStarted}
-					isPaused={this.props.board.isPaused}
-					isFinished={this.props.board.isFinished}
-					onNewGame={this.props.newGame}
-					onReplayGame={this.props.replayGame}
-					onPauseGame={this.props.pauseGame}
-					onRowsChange={this.props.setRows}
-					onColumnsChange={this.props.setColumns}
-					onMinesChange={this.props.setTotalMines}
+			<div>
+				<Header
+					onToggleHelp={this.toggleHelp.bind(this)}
 				/>
-				<Board
-					{...this.props.board}
-					onCellClick={this.onCellClick.bind(this)}
-				/>
+				<div className={'game' + (this.props.board.isPaused ? ' game-paused' : '') + (this.props.board.isFinished ? ' game-finished' : '')}>
+					<Controls
+						{...this.props.controls}
+						isStarted={this.props.board.isStarted}
+						isPaused={this.props.board.isPaused}
+						isFinished={this.props.board.isFinished}
+						onNewGame={this.props.newGame}
+						onReplayGame={this.props.replayGame}
+						onPauseGame={this.props.pauseGame}
+						onRowsChange={this.props.setRows}
+						onColumnsChange={this.props.setColumns}
+						onMinesChange={this.props.setTotalMines}
+					/>
+					<Board
+						{...this.props.board}
+						onCellClick={this.onCellClick.bind(this)}
+					/>
+					<HelpModalComponent
+						isOpen={this.props.controls.isHelpModalOpen}
+						onClose={this.props.closeHelpModal}
+					/>
+				</div>
 			</div>
+
 		);
+	}
+
+	toggleHelp() {
+		if (this.props.controls.isHelpModalOpen) {
+			this.props.closeHelpModal();
+		} else {
+			this.props.openHelpModal();
+		}
 	}
 
 	onCellClick(cellId, isLeftClick) {
@@ -109,6 +129,8 @@ export default connect(
 		pauseGame,
 		setRows,
 		setColumns,
-		setTotalMines
+		setTotalMines,
+		openHelpModal,
+		closeHelpModal
 	}
 )(Game);

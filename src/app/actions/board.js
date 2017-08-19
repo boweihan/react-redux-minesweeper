@@ -1,5 +1,5 @@
 import {CELL_STATE_FLAGGED, CELL_STATE_UNCLEARED, MINE_STATE_MINE} from '../constants';
-import {setColumns, setRows, setTotalMines} from './controls';
+import {closeHelpModal, openHelpModal, setColumns, setRows, setTotalMines} from './controls';
 import {checkGameWon} from '../utils/checkGameWon';
 
 export const FOCUS_CELL = 'FOCUS_CELL';
@@ -143,7 +143,7 @@ export const cellFocus = cellId => ({
 
 export const keyPressed = (ctrlKey, keyCode) => {
 	return (dispatch, getState) => {
-		const {board} = getState();
+		const {board, controls} = getState();
 		if (ctrlKey) {
 			switch (keyCode) {
 				case 80:
@@ -159,6 +159,10 @@ export const keyPressed = (ctrlKey, keyCode) => {
 				case 78:
 					// n key - new game
 					dispatch(newGame());
+					break;
+				case 72:
+					// h key - help
+					dispatch(controls.isHelpModalOpen ? closeHelpModal() : openHelpModal());
 					break;
 				default:
 					break;
