@@ -144,6 +144,10 @@
 	background-color: #f34d4d;
 	color: #fff;
 }
+.cell.cell-state-hit-mine .mine {
+	animation: pulse 1s linear 0s infinite;
+	display: block;
+}
 
 .cell.cell-state-hit-mine,
 .cell.cell-state-reveal-mine-found,
@@ -165,7 +169,10 @@
 }
 
 .cell .mine {
-	font-size: 25px;
+	font-size: 27px;
+	line-height: 38px;
+	width: 38px;
+	height: 38px;
 }
 
 .control-row {
@@ -214,5 +221,17 @@ button:hover, button:active {
 	}
 	75% {
 		border-color: #e1e1e1;
+	}
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.8);
+	}
+	50% {
+		transform: scale(1.5);
+	}
+	100% {
+		transform: scale(0.8);
 	}
 }
