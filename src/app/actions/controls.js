@@ -1,3 +1,5 @@
+import {pauseGame} from './board';
+
 export const SET_ROWS = 'SET_ROWS';
 export const SET_COLS = 'SET_COLS';
 export const SET_TOTAL_MINES = 'SET_TOTAL_MINES';
@@ -23,11 +25,27 @@ export const setTotalMines = total => ({
 });
 
 
-export const openHelpModal = () => ({
-	type: OPEN_HELP_MODAL
-});
+export const openHelpModal = () => {
+	return (dispatch, getState) => {
+		const {board} = getState();
+		if (board.isStarted && !board.isFinished && !board.isPaused) {
+			dispatch(pauseGame());
+		}
+		dispatch({
+			type: OPEN_HELP_MODAL
+		});
+	}
+};
 
 
-export const closeHelpModal = () => ({
-	type: CLOSE_HELP_MODAL
-});
+export const closeHelpModal = () => {
+	return (dispatch, getState) => {
+		const {board} = getState();
+		if (board.isPaused) {
+			dispatch(pauseGame());
+		}
+		dispatch({
+			type: CLOSE_HELP_MODAL
+		});
+	}
+};
