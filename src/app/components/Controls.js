@@ -57,7 +57,10 @@ class Controls extends Component {
 					</div>
 
 					<div className="control">
-						<button type="submit">New Game</button>
+						<button
+							type="submit"
+							ref={btn => this.submitBtn = btn}
+						>New Game</button>
 					</div>
 
 					<div className="control">
@@ -71,6 +74,7 @@ class Controls extends Component {
 
 	onSubmit(evt) {
 		evt.preventDefault();
+		this.submitBtn.blur();
 		this.props.onNewGame();
 	}
 }
