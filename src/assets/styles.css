@@ -43,9 +43,20 @@ html {
 	display: block;
 }
 
-.help-modal ul {
-	display: inline-block;
+.help-modal table {
+	margin: 2em auto;
+	border-collapse: collapse;
+}
+
+.help-modal table td {
+	padding: 6px 12px;
+	border: 1px solid #ddd;
+	font-size: 0.9em;
 	text-align: left;
+}
+
+.help-modal table td:first-child {
+	font-weight: bold;
 }
 
 .help-modal .help-modal-close-icon {

@@ -9,24 +9,61 @@ const HelpModalComponent = props => (
 		<p>The aim of the game is to locate all of the mines. Hitting a mine causes you to lose the game.</p>
 
 		<h3>Controls - mouse</h3>
-		<ul>
-			<li>Reveal cell - left click</li>
-			<li>Flag/Unflag as mine - right click</li>
-		</ul>
+		<table>
+			<tr>
+				<td>Left click</td>
+				<td>Reveal cell</td>
+			</tr>
+			<tr>
+				<td>Right click</td>
+				<td>Flag/unflag as mine</td>
+			</tr>
+		</table>
+
 
 		<h3>Controls - keyboard</h3>
-		<ul>
-			<li>Reveal cell - enter</li>
-			<li>Flag/Unflag as mine - F</li>
-			<li>Move up - up arrow</li>
-			<li>Move down - down arrow</li>
-			<li>Move left - left arrow</li>
-			<li>Move right - right arrow</li>
-			<li>Pause game - Ctrl + P</li>
-			<li>Replay game - Ctrl + R</li>
-			<li>New game - Ctrl + N</li>
-			<li>Toggle help - Ctrl + H</li>
-		</ul>
+		<table>
+			<tr>
+				<td>Enter</td>
+				<td>Reveal cell</td>
+			</tr>
+			<tr>
+				<td>F</td>
+				<td>Flag/unflag as mine</td>
+			</tr>
+			<tr>
+				<td><i className="zmdi zmdi-long-arrow-up"></i></td>
+				<td>Move up one row</td>
+			</tr>
+			<tr>
+				<td><i className="zmdi zmdi-long-arrow-down"></i></td>
+				<td>Move down one row</td>
+			</tr>
+			<tr>
+				<td><i className="zmdi zmdi-long-arrow-left"></i></td>
+				<td>Move left</td>
+			</tr>
+			<tr>
+				<td><i className="zmdi zmdi-long-arrow-right"></i></td>
+				<td>Move right</td>
+			</tr>
+			<tr>
+				<td>Ctrl + P</td>
+				<td>Pause game</td>
+			</tr>
+			<tr>
+				<td>Ctrl + N</td>
+				<td>New game</td>
+			</tr>
+			<tr>
+				<td>Ctrl + R</td>
+				<td>Replay game</td>
+			</tr>
+			<tr>
+				<td>Ctrl + H</td>
+				<td>Toggle help dialog</td>
+			</tr>
+		</table>
 
 	</div>
 );
