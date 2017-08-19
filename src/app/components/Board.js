@@ -9,6 +9,7 @@ class Board extends Component {
 			<div
 				className={'board ' + (this.props.isFinished ? (this.props.lastGameLost ? 'board-lost' : 'board-won') : '')}
 				onClick={this.boardClicked.bind(this)}
+				onMouseOver={this.boardMouseOver.bind(this)}
 				onContextMenu={this.boardClicked.bind(this)}
 			>
 				<BoardHeader
@@ -52,20 +53,28 @@ class Board extends Component {
 	boardClicked(evt) {
 		const {classList} = evt.target;
 		if (classList.contains('cell') && !classList.contains('cell-state-cleared')) {
-			const id = +evt.target.getAttribute('data-cell');
+			const cellId = +evt.target.getAttribute('data-cell');
 			const {button} = evt.nativeEvent;
 
 			if (button === 0) {
 				// button is 0 for left click
-				this.props.onCellClick(id, true);
+				this.props.onCellClick(cellId, true);
 			}
 			else if (button === 2) {
 				// button is 2 for right click
 				evt.preventDefault();
-				this.props.onCellClick(id, false);
+				this.props.onCellClick(cellId, false);
 			}
 		} else {
 			evt.preventDefault();
+		}
+	}
+
+	boardMouseOver(evt) {
+		const {classList} = evt.target;
+		if (classList.contains('cell')) {
+			const cellId = +evt.target.getAttribute('data-cell');
+			this.props.onCellMouseOver(cellId);
 		}
 	}
 }

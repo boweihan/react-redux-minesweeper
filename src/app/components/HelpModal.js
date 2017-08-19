@@ -27,7 +27,7 @@ const HelpModalComponent = props => (
 		<table>
 			<tbody>
 				<tr>
-					<td>Enter</td>
+					<td>Enter / R</td>
 					<td>Reveal cell</td>
 				</tr>
 				<tr>

@@ -147,21 +147,21 @@ export const keyPressed = (ctrlKey, keyCode) => {
 		if (ctrlKey) {
 			switch (keyCode) {
 				case 80:
-					// p key - pause
+					// Ctrl + P - pause
 					if (board.isStarted && !board.isFinished) {
 						dispatch(pauseGame());
 					}
 					break;
 				case 82:
-					// r key - replay
+					// Ctrl + R - replay
 					dispatch(replayGame());
 					break;
 				case 78:
-					// n key - new game
+					// Ctrl + N - new game
 					dispatch(newGame());
 					break;
 				case 72:
-					// h key - help
+					// Ctrl + H - help
 					dispatch(controls.isHelpModalOpen ? closeHelpModal() : openHelpModal());
 					break;
 				default:
@@ -205,11 +205,12 @@ export const keyPressed = (ctrlKey, keyCode) => {
 					dispatch(cellFocus(nextCell));
 					break;
 				case 13:
-					// enter key
+				case 82:
+					// Enter or R - reveal
 					dispatch(cellClick(focusedCell, true));
 					break;
 				case 70:
-					// f key - flag/unflag
+					// F - flag/unflag
 					dispatch(cellClick(focusedCell, false));
 					break;
 				default:

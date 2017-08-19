@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Controls from './Controls';
 import Board from './Board';
-import {cellClick, keyPressed, newGame, pauseGame, replayGame, updateTimer} from '../actions/board';
+import {cellClick, cellFocus, keyPressed, newGame, pauseGame, replayGame, updateTimer} from '../actions/board';
 import {closeHelpModal, openHelpModal, setColumns, setRows, setTotalMines} from '../actions/controls';
 import HelpModalComponent from './HelpModal';
 import Header from './Header';
@@ -38,6 +38,7 @@ class Game extends Component {
 					<Board
 						{...this.props.board}
 						onCellClick={this.onCellClick.bind(this)}
+						onCellMouseOver={this.onCellMouseOver.bind(this)}
 					/>
 					<HelpModalComponent
 						isOpen={this.props.controls.isHelpModalOpen}
@@ -60,6 +61,12 @@ class Game extends Component {
 	onCellClick(cellId, isLeftClick) {
 		if (!(this.props.board.isFinished || this.props.board.isPaused)) {
 			this.props.cellClick(cellId, isLeftClick);
+		}
+	}
+
+	onCellMouseOver(cellId) {
+		if (!(this.props.board.isFinished || this.props.board.isPaused)) {
+			this.props.cellFocus(cellId);
 		}
 	}
 
@@ -123,6 +130,7 @@ export default connect(
 	{
 		updateTimer,
 		cellClick,
+		cellFocus,
 		keyPressed,
 		newGame,
 		replayGame,
