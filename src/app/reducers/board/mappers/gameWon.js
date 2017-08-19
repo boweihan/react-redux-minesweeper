@@ -23,6 +23,7 @@ export const gameWonMapper = (state, action) => {
 		board: boardFinal,
 		minesRemaining: 0,
 		isFinished: true,
-		lastGameLost: false
+		lastGameLost: false,
+		focusedCell: -1
 	};
 };

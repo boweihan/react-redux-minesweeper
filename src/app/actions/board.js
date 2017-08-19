@@ -2,7 +2,7 @@ import {CELL_STATE_FLAGGED, CELL_STATE_UNCLEARED, MINE_STATE_MINE} from '../cons
 import {setColumns, setRows, setTotalMines} from './controls';
 import {checkGameWon} from '../utils/checkGameWon';
 
-
+export const FOCUS_CELL = 'FOCUS_CELL';
 export const CELL_REVEAL = 'CELL_REVEAL';
 export const FLAG_MINE= 'FLAG_MINE';
 export const UNFLAG_MINE= 'UNFLAG_MINE';
@@ -57,8 +57,11 @@ export const hitMine = cellId => ({
 });
 
 
-export const cellClicked = (cellId, isLeftClick) => {
+export const cellClick = (cellId, isLeftClick) => {
 	return (dispatch, getState) => {
+
+		dispatch(cellFocus(cellId));
+
 		let state = getState();
 
 		if (!state.board.isStarted) {
@@ -131,3 +134,81 @@ export const updateTimer = () => ({
 	type: UPDATE_TIMER,
 	payload: (new Date()).getTime()
 });
+
+
+export const cellFocus = cellId => ({
+	type: FOCUS_CELL,
+	payload: cellId
+});
+
+export const keyPressed = (ctrlKey, keyCode) => {
+	return (dispatch, getState) => {
+		const {board} = getState();
+		if (ctrlKey) {
+			switch (keyCode) {
+				case 80:
+					// p key - pause
+					dispatch(pauseGame());
+					break;
+				case 82:
+					// r key - replay
+					dispatch(replayGame());
+					break;
+				case 78:
+					// n key - new game
+					dispatch(newGame());
+					break;
+				default:
+					break;
+			}
+		} else if (!board.isPaused && !board.isFinished) {
+			const {focusedCell, numCols, numRows} = board;
+			const row = Math.floor(focusedCell / numCols);
+			let nextCell;
+			switch (keyCode) {
+				case 37:
+					// left arrow
+					nextCell = focusedCell - 1;
+					if (Math.floor(nextCell / numCols) !== row) {
+						nextCell += numCols;
+					}
+					dispatch(cellFocus(nextCell));
+					break;
+				case 38:
+					// up arrow
+					nextCell = focusedCell - numCols;
+					if (nextCell < 0) {
+						nextCell += numCols * numRows;
+					}
+					dispatch(cellFocus(nextCell));
+					break;
+				case 39:
+					// right arrow
+					nextCell = focusedCell + 1;
+					if (Math.floor(nextCell / numCols) !== row) {
+						nextCell -= numCols;
+					}
+					dispatch(cellFocus(nextCell));
+					break;
+				case 40:
+					// down arrow
+					nextCell = focusedCell + numCols;
+					if (nextCell >= numCols * numRows) {
+						nextCell %= numCols;
+					}
+					dispatch(cellFocus(nextCell));
+					break;
+				case 13:
+					// enter key
+					dispatch(cellClick(focusedCell, true));
+					break;
+				case 70:
+					// f key - flag/unflag
+					dispatch(cellClick(focusedCell, false));
+					break;
+				default:
+					break;
+			}
+		}
+	};
+};

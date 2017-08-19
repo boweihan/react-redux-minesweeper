@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Controls from './Controls';
 import Board from './Board';
-import {cellClicked, newGame, pauseGame, replayGame, updateTimer} from '../actions/board';
+import {cellClick, keyPressed, newGame, pauseGame, replayGame, updateTimer} from '../actions/board';
 import {setColumns, setRows, setTotalMines} from '../actions/controls';
 
 class Game extends Component {
@@ -39,8 +39,12 @@ class Game extends Component {
 
 	onCellClick(cellId, isLeftClick) {
 		if (!(this.props.board.isFinished || this.props.board.isPaused)) {
-			this.props.cellClicked(cellId, isLeftClick);
+			this.props.cellClick(cellId, isLeftClick);
 		}
+	}
+
+	componentDidMount() {
+		document.body.onkeydown = evt => this.props.keyPressed(evt.ctrlKey, evt.keyCode);
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -98,7 +102,8 @@ export default connect(
 	mapStateToProps,
 	{
 		updateTimer,
-		cellClicked,
+		cellClick,
+		keyPressed,
 		newGame,
 		replayGame,
 		pauseGame,

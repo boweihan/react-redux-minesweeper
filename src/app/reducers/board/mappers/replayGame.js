@@ -13,6 +13,7 @@ export const replayGameMapper = (state, action) => {
 		lastGameLost: false,
 		minesRemaining: state.numMines,
 		elapsedTime: 0,
-		isReplay: true
+		isReplay: true,
+		focusedCell: 0
 	};
 };

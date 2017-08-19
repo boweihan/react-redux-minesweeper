@@ -1,5 +1,5 @@
 import {
-	CELL_REVEAL, FLAG_MINE, GAME_WON, HIT_MINE, NEW_GAME, PAUSE_GAME, REPLAY_GAME, START_GAME, UNFLAG_MINE,
+	CELL_REVEAL, FLAG_MINE, FOCUS_CELL, GAME_WON, HIT_MINE, NEW_GAME, PAUSE_GAME, REPLAY_GAME, START_GAME, UNFLAG_MINE,
 	UPDATE_TIMER
 } from '../../actions/board';
 import {newGameMapper} from './mappers/newGame';
@@ -28,12 +28,16 @@ const INITIAL_BOARD_STATE = {
 	time: 0,
 	elapsedTime: 0,
 	minesRemaining: 0,
-	isReplay: false
+	isReplay: false,
+	focusedCell: -1
 };
 
 
 export default function board (state = INITIAL_BOARD_STATE, action) {
 	switch (action.type) {
+
+		case FOCUS_CELL:
+			return {...state, focusedCell: action.payload};
 
 		case NEW_GAME:
 			return newGameMapper(state, action);

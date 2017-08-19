@@ -17,6 +17,7 @@ export const newGameMapper = (state, action) => {
 		lastGameLost: false,
 		minesRemaining: numMines,
 		elapsedTime: 0,
-		isReplay: false
+		isReplay: false,
+		focusedCell: 0
 	};
 };

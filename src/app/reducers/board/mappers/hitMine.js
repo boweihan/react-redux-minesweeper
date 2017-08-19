@@ -24,6 +24,7 @@ export const hitMineMapper = (state, action) => {
 		...state,
 		isFinished: true,
 		lastGameLost: true,
-		board
+		board,
+		focusedCell: -1
 	};
 };

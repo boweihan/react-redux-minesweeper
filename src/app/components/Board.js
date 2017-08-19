@@ -44,6 +44,7 @@ class Board extends Component {
 					key={'cell.' + cellId}
 					cellId={cellId}
 					code={this.props.board[cellId]}
+					isFocused={this.props.focusedCell === cellId}
 				/>
 			});
 	}

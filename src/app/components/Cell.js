@@ -42,6 +42,10 @@ class Cell extends Component {
 	getClassNames() {
 		const classNames = ['cell'];
 
+		if (this.props.isFocused) {
+			classNames.push('cell-focused');
+		}
+
 		if (isCellCleared(this.props.code)) {
 			const count = mapCellStateToProximityCount(this.props.code);
 			classNames.push('cell-state-cleared', `cell-state-${count}`);
