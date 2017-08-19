@@ -72,10 +72,10 @@ export const cellClick = (cellId, isLeftClick) => {
 			state = getState();
 		}
 
-		const cellCode = state.board.board[cellId];
+		const cellState = state.board.board[cellId];
 
 		if (isLeftClick) {
-			if (cellCode === CELL_STATE_UNCLEARED) {
+			if (cellState === CELL_STATE_UNCLEARED) {
 				const isMine = state.board.mines[cellId] === MINE_STATE_MINE;
 				if (isMine) {
 					dispatch(hitMine(cellId));
@@ -84,9 +84,9 @@ export const cellClick = (cellId, isLeftClick) => {
 				}
 			}
 		} else {
-			if (cellCode === CELL_STATE_FLAGGED) {
+			if (cellState === CELL_STATE_FLAGGED) {
 				dispatch(flagMine(cellId, false));
-			} else {
+			} else if (cellState === CELL_STATE_UNCLEARED) {
 				dispatch(flagMine(cellId, true));
 			}
 		}
