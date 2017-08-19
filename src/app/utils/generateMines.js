@@ -12,9 +12,7 @@ export function generateMines(numRows, numCols, numMines, initialCellId) {
 
 	let minesAllocated = 0;
 	while (minesAllocated < numMines) {
-		const randRow = Math.floor(Math.random() * numRows);
-		const randCol = Math.floor(Math.random() * numCols);
-		const index = randRow * numCols + randCol;
+		const index = Math.floor(Math.random() * numCells);
 
 		if (index === initialCellId || mines[index] === MINE_STATE_MINE) {
 			// Don't put a mine in the initial cell!
