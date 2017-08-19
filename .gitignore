@@ -21,3 +21,6 @@ yarn-debug.log*
 yarn-error.log*
 
 .idea
+
+# compiled css
+src/assets/styles/**/*.css

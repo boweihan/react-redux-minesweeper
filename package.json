@@ -22,7 +22,7 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "node ./deployment/deploy.js",
-    "build-css": "node-sass-chokidar src/assets/styles.scss -o src/assets/",
-    "watch-css": "npm run build-css && node-sass-chokidar src/assets/styles.scss -o src/assets/ --watch --recursive"
+    "build-css": "node-sass-chokidar src/assets/styles/styles.scss -o src/assets/styles/",
+    "watch-css": "npm run build-css && node-sass-chokidar src/assets/styles/styles.scss -o src/assets/styles/ --watch --recursive"
   }
 }

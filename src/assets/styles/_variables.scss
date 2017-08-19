@@ -1,0 +1,71 @@
+// GLOBAL
+$app-bg-color: #f7f7f7;
+$text-color: #333;
+$font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+$app-min-width: 1000px;
+
+
+// HEADER
+$header-bg-color: #333;
+$header-text-color: #fff;
+
+
+// BOARD
+$board-paused-bg-color: #eee;
+$board-border-color: #e1e1e1;
+$board-border: 4px solid $board-border-color;
+
+$win-color: #65de54;
+$win-color-darker: #38b027;
+
+$lose-color: #f34d4d;
+$lose-color-darker: #e01310;
+
+$timer-color: #eee;
+$timer-color-darker: #ccc;
+
+$counter-text-color: #fff;
+$board-header-border-color: #ccc;
+
+
+// CELLS
+$cell-size: 38px;
+$mine-font-size: 27px;
+$cell-border: 1px solid rgba(255, 255, 255, 0.2);
+$cell-border-focused: 1px solid #333;
+$cell-bg-color-1: rgb(154, 164, 207);
+$cell-bg-color-2: rgb(135, 145, 192);
+$cell-bg-uncleared: linear-gradient(to top left, $cell-bg-color-1, $cell-bg-color-2);
+$cell-hit-bg-color: $lose-color;
+$cell-hit-text-color: #fff;
+$cell-found-mine-bg-color: $win-color;
+$cell-invalid-flag-bg-color: #f0cf5c;
+$cell-invalid-flag-text-color: #fff;
+$cell-cleared-bg-color: #e1e1e1;
+
+$cell-count-font-size: 20px;
+$cell-count-1-color: rgb(0, 0, 255);
+$cell-count-2-color: rgb(0, 128, 0);
+$cell-count-3-color: rgb(255, 0, 0);
+$cell-count-4-color: rgb(0, 0, 128);
+$cell-count-5-color: rgb(120, 0, 0);
+$cell-count-6-color: rgb(0, 128, 255);
+$cell-count-7-color: rgb(255, 128, 0);
+$cell-count-8-color: rgb(0, 0, 0);
+
+
+// CONTROLS
+$control-border: 1px solid #ccc;
+$control-label-color: #777;
+$input-invalid-border-color: $lose-color-darker;
+$button-bg-color-1: #fff;
+$button-bg-color-2: #eee;
+$button-bg-color-3: #ddd;
+
+
+// HELP MODAL
+$help-close-icon-color: $lose-color;
+$help-table-border-color: #ddd;
+$help-border-color: #ccc;
+$help-bg-color: #fff;
+$help-width: 700px;

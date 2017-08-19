@@ -1,0 +1,20 @@
+@keyframes border-flash {
+	25% {
+		border-color: $lose-color;
+	}
+	75% {
+		border-color: $board-border-color;
+	}
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.8);
+	}
+	50% {
+		transform: scale(1.4);
+	}
+	100% {
+		transform: scale(0.8);
+	}
+}

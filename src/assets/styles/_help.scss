@@ -4,40 +4,41 @@
 	top: 100px;
 	left: 0;
 	right: 0;
-	width: 700px;
+	width: $help-width;
 	margin: 0 auto;
-	background: #fff;
-	border: 1px solid #ccc;
+	background: $help-bg-color;
+	border: 1px solid $help-border-color;
 	box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 6px 2px;
 	display: none;
-}
 
-.help-modal.help-modal-open {
-	display: block;
-}
+	&.help-modal-open {
+		display: block;
+	}
 
-.help-modal table {
-	margin: 2em auto;
-	border-collapse: collapse;
-	min-width: 350px;
-}
+	table {
+		margin: 2em auto;
+		border-collapse: collapse;
+		min-width: 350px;
 
-.help-modal table td {
-	padding: 4px 12px;
-	border: 1px solid #ddd;
-	font-size: 0.9em;
-	text-align: left;
-}
+		td {
+			padding: 4px 12px;
+			border: 1px solid $help-table-border-color;
+			font-size: 0.9em;
+			text-align: left;
 
-.help-modal table td:first-child {
-	font-weight: bold;
-}
+			&:first-child {
+				font-weight: bold;
+			}
+		}
+	}
 
-.help-modal .help-modal-close-icon {
-	position: absolute;
-	right: 1.5rem;
-	top: 01rem;
-	font-size: 2rem;
-	color: #f34d4d;
-	cursor: pointer;
+	.help-modal-close-icon {
+		position: absolute;
+		right: 1.5rem;
+		top: 1rem;
+		font-size: 2rem;
+		color: $help-close-icon-color;
+		cursor: pointer;
+	}
+
 }
