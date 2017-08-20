@@ -32,7 +32,12 @@ button {
 	outline: none;
 	font-family: inherit;
 
-	&:hover, &:active {
+	&:disabled {
+		opacity: 0.66;
+		cursor: default;
+	}
+
+	&:not(:disabled):hover, &:not(:disabled):active {
 		background: #f7f7f7;
 		background: linear-gradient(to bottom, $button-bg-color-1, $button-bg-color-3);
 	}
