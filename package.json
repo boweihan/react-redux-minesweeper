@@ -18,6 +18,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "prebuild": "npm run build-css",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
