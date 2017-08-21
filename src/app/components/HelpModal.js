@@ -51,19 +51,19 @@ const HelpModalComponent = props => (
 					<td>Move right</td>
 				</tr>
 				<tr>
-					<td>Ctrl + P</td>
+					<td>Shift + P</td>
 					<td>Pause game</td>
 				</tr>
 				<tr>
-					<td>Ctrl + N</td>
+					<td>Shift + N</td>
 					<td>New game</td>
 				</tr>
 				<tr>
-					<td>Ctrl + R</td>
+					<td>Shift + R</td>
 					<td>Replay game</td>
 				</tr>
 				<tr>
-					<td>Ctrl + H</td>
+					<td>Shift + H</td>
 					<td>Toggle help dialog</td>
 				</tr>
 			</tbody>

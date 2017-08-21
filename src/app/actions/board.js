@@ -141,10 +141,10 @@ export const cellFocus = cellId => ({
 	payload: cellId
 });
 
-export const keyPressed = (ctrlKey, keyCode) => {
+export const keyPressed = (shiftKey, keyCode) => {
 	return (dispatch, getState) => {
 		const {board, controls} = getState();
-		if (ctrlKey) {
+		if (shiftKey) {
 			switch (keyCode) {
 				case 80:
 					// Ctrl + P - pause

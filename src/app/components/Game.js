@@ -71,7 +71,7 @@ class Game extends Component {
 	}
 
 	componentDidMount() {
-		document.body.onkeydown = evt => this.props.keyPressed(evt.ctrlKey, evt.keyCode);
+		document.body.onkeydown = evt => this.props.keyPressed(evt.shiftKey, evt.keyCode);
 	}
 
 	componentWillReceiveProps(nextProps) {

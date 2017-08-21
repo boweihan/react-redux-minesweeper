@@ -1,11 +1,11 @@
 .help-modal {
-	position: fixed;
+	position: absolute;
 	padding: 1em 2em 2em 2em;
 	top: 100px;
 	left: 0;
 	right: 0;
 	width: $help-width;
-	margin: 0 auto;
+	margin: 0 auto 2em auto;
 	background: $help-bg-color;
 	border: 1px solid $help-border-color;
 	box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 6px 2px;
