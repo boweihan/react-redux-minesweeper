@@ -40,14 +40,17 @@ class Game extends Component {
 						onCellClick={this.onCellClick.bind(this)}
 						onCellMouseOver={this.onCellMouseOver.bind(this)}
 					/>
-					<HelpModalComponent
-						isOpen={this.props.controls.isHelpModalOpen}
-						onClose={this.props.closeHelpModal}
-					/>
+					{this.renderHelp()}
 				</div>
 			</div>
 
 		);
+	}
+
+	renderHelp() {
+		return this.props.controls.isHelpModalOpen ?
+			<HelpModalComponent onClose={this.props.closeHelpModal} /> :
+			null;
 	}
 
 	toggleHelp() {

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const HelpModalComponent = props => (
-	<div className={'help-modal' + (props.isOpen ? ' help-modal-open' : '')}>
+	<div className="help-modal">
 
 		<i className="zmdi zmdi-close help-modal-close-icon" onClick={props.onClose}></i>
 

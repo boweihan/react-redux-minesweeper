@@ -9,11 +9,6 @@
 	background: $help-bg-color;
 	border: 1px solid $help-border-color;
 	box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 6px 2px;
-	display: none;
-
-	&.help-modal-open {
-		display: block;
-	}
 
 	table {
 		margin: 1em auto;
