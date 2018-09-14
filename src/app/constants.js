@@ -1,7 +1,6 @@
 export const MINE_STATE_CLEAR = 0;
 export const MINE_STATE_MINE = 1;
 
-
 export const CELL_STATE_UNCLEARED = -1;
 export const CELL_STATE_FLAGGED = -2;
 export const CELL_STATE_HIT_MINE = -3;
@@ -17,7 +16,6 @@ export const CELL_STATE_5 = 5;
 export const CELL_STATE_6 = 6;
 export const CELL_STATE_7 = 7;
 export const CELL_STATE_8 = 8;
-
 
 // proximity counts
 export const PROXIMITY_IS_MINE = -1;

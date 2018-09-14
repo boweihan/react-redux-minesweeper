@@ -3,7 +3,8 @@ import {sequence} from './sequence';
 export function getAdjacentCells(cellId, numRows, numCols, distance = 1) {
 
 	const row = Math.floor(cellId / numCols);
-	const size = numRows * numCols;
+	const size = numRows * numCols
+	
 
 	const seq = sequence(-distance, distance);
 
